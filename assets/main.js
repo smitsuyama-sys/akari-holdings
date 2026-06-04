@@ -113,18 +113,24 @@
 
   // --- Count-up numbers ---
   var counters = document.querySelectorAll('[data-count]');
+  function fmtCount(el, n) {
+    var dec = parseInt(el.getAttribute('data-decimals'), 10) || 0;
+    var plain = el.hasAttribute('data-plain');
+    if (dec > 0) return n.toFixed(dec);
+    return plain ? String(n) : n.toLocaleString('en-US');
+  }
   function runCount(el) {
     var target = parseFloat(el.getAttribute('data-count')) || 0;
-    var plain = el.hasAttribute('data-plain');
+    var dec = parseInt(el.getAttribute('data-decimals'), 10) || 0;
     var dur = 1500, start = null;
-    function fmt(n) { return plain ? String(n) : n.toLocaleString('en-US'); }
     function step(ts) {
       if (start === null) start = ts;
       var p = Math.min((ts - start) / dur, 1);
       var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = fmt(Math.floor(eased * target));
+      var cur = dec > 0 ? eased * target : Math.floor(eased * target);
+      el.textContent = fmtCount(el, cur);
       if (p < 1) requestAnimationFrame(step);
-      else el.textContent = fmt(target);
+      else el.textContent = fmtCount(el, target);
     }
     requestAnimationFrame(step);
   }
@@ -138,8 +144,7 @@
       counters.forEach(function (el) { cio.observe(el); });
     } else {
       counters.forEach(function (el) {
-        var t = parseFloat(el.getAttribute('data-count')) || 0;
-        el.textContent = el.hasAttribute('data-plain') ? String(t) : t.toLocaleString('en-US');
+        el.textContent = fmtCount(el, parseFloat(el.getAttribute('data-count')) || 0);
       });
     }
   }
