@@ -8,17 +8,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Archivo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-<link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg?v=3">
+<link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg?v=4">
 <meta name="theme-color" content="#01091e">
-<link rel="stylesheet" href="assets/style.css?v=3">
+<link rel="stylesheet" href="assets/style.css?v=4">
 </head>
 <body>
 
 <!-- ===== Header ===== -->
 <header class="site-header" id="siteHeader">
   <div class="header-inner">
-    <a href="#hero" class="logo" aria-label="光ホールディングス株式会社">
-      <img class="logo-mark" src="assets/logo-mark.svg?v=3" alt="光ホールディングス ロゴ">
+    <a href="index.html" class="logo" aria-label="光ホールディングス株式会社">
+      <img class="logo-mark" src="assets/logo-mark.svg?v=4" alt="光ホールディングス ロゴ">
       <span class="logo-text">
         <span class="logo-en">AKARI HOLDINGS</span>
         <span class="logo-jp">光ホールディングス株式会社</span>
@@ -26,19 +26,21 @@
     </a>
     <nav class="gnav" id="gnav">
       <ul>
-        <li><a href="#about"><span class="nav-en">About</span><span class="nav-jp">私たちについて</span></a></li>
-        <li><a href="#business"><span class="nav-en">Business</span><span class="nav-jp">事業内容</span></a></li>
-        <li><a href="#group"><span class="nav-en">Group</span><span class="nav-jp">グループ会社</span></a></li>
-        <li><a href="#news"><span class="nav-en">News</span><span class="nav-jp">お知らせ</span></a></li>
-        <li><a href="#recruit"><span class="nav-en">Recruit</span><span class="nav-jp">採用情報</span></a></li>
+        <li><a href="about.html"><span class="nav-en">About</span><span class="nav-jp">私たちについて</span></a></li>
+        <li><a href="business.html"><span class="nav-en">Business</span><span class="nav-jp">事業内容</span></a></li>
+        <li><a href="group.html"><span class="nav-en">Group</span><span class="nav-jp">グループ会社</span></a></li>
+        <li><a href="news.html"><span class="nav-en">News</span><span class="nav-jp">お知らせ</span></a></li>
+        <li><a href="recruit.html"><span class="nav-en">Recruit</span><span class="nav-jp">採用情報</span></a></li>
       </ul>
-      <a href="#contact" class="nav-contact">お問い合わせ</a>
+      <a href="contact.html" class="nav-contact">お問い合わせ</a>
     </nav>
     <button class="menu-toggle" id="menuToggle" aria-label="メニュー" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
+
+<main class="page-main">
 
 <!-- ===== Hero ===== -->
 <section class="hero" id="hero">
@@ -53,38 +55,30 @@
       私たちは、グループ経営と投資を通じて社会に必要とされる企業を育てます。
     </p>
     <div class="hero-actions">
-      <a href="#business" class="btn btn-primary">事業内容を見る</a>
-      <a href="#group" class="btn btn-ghost">グループ会社</a>
+      <a href="business.html" class="btn btn-primary">事業内容を見る</a>
+      <a href="group.html" class="btn btn-ghost">グループ会社</a>
     </div>
   </div>
   <div class="hero-scroll"><span>SCROLL</span></div>
 </section>
 
-<!-- ===== Message ===== -->
-<section class="message" id="message">
+<!-- ===== Message (preview) ===== -->
+<section class="message">
   <div class="container">
     <div class="section-head">
       <span class="section-en">Message</span>
       <h2 class="section-title">代表メッセージ</h2>
     </div>
     <div class="message-body">
-      <div class="message-text">
+      <div class="message-text" data-reveal data-dir="left">
         <p class="message-catch">「光」は、希望であり、進むべき道を示すものです。</p>
         <p>
           時代の変化が加速するいま、優れた技術や志を持ちながらも、後継者・資本・経営資源の課題に直面する企業は少なくありません。
           光ホールディングスは、そうした企業に資本と経営の知見を注ぎ、持続的に成長できる体制を整えることを使命としています。
         </p>
-        <p>
-          私たちは単なる投資会社ではありません。グループ各社の自主性を尊重しながら、長期的な視点で経営を支え、
-          働く人々と地域社会にとって価値ある存在であり続けることを目指します。一つひとつの事業の未来を照らし、
-          その光をより大きなものへと育てていく——それが私たちの約束です。
-        </p>
-        <div class="message-sign">
-          <span class="sign-role">代表取締役社長</span>
-          <span class="sign-name">光山 聡</span>
-        </div>
+        <a href="about.html" class="more-link">代表メッセージを読む <span class="arw">→</span></a>
       </div>
-      <div class="message-figure" aria-hidden="true">
+      <div class="message-figure" data-reveal data-dir="right" aria-hidden="true">
         <div class="figure-glow"></div>
         <div class="figure-kanji">光</div>
       </div>
@@ -92,92 +86,44 @@
   </div>
 </section>
 
-<!-- ===== About / Philosophy ===== -->
-<section class="about" id="about">
+<!-- ===== Section navigation cards ===== -->
+<section class="about">
   <div class="container">
     <div class="section-head center">
-      <span class="section-en">About / Philosophy</span>
-      <h2 class="section-title">私たちの理念</h2>
+      <span class="section-en">Explore</span>
+      <h2 class="section-title">光ホールディングスを知る</h2>
     </div>
-    <div class="philosophy">
-      <div class="phi-card">
-        <span class="phi-label">Vision</span>
-        <h3>未来を照らす企業グループへ</h3>
-        <p>価値ある事業の連なりによって、社会の課題を解決し続ける企業グループを目指します。</p>
-      </div>
-      <div class="phi-card">
-        <span class="phi-label">Mission</span>
-        <h3>事業の価値を、次代へ継ぐ</h3>
-        <p>資本と経営の力で事業承継を支え、企業が持つ技術・人・想いを未来へとつなぎます。</p>
-      </div>
-      <div class="phi-card">
-        <span class="phi-label">Value</span>
-        <h3>誠実・長期・共創</h3>
-        <p>短期の利益ではなく長期の信頼を。グループ各社とともに価値を共に創ります。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== Business ===== -->
-<section class="business" id="business">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-en">Business</span>
-      <h2 class="section-title">事業内容</h2>
-      <p class="section-desc">光ホールディングスは、グループ経営と投資を軸に、傘下企業の成長を支援します。</p>
-    </div>
-    <div class="biz-grid">
-      <article class="biz-card">
-        <span class="biz-num">01</span>
-        <h3>グループ経営・統括</h3>
-        <p>グループ全体の経営戦略の立案、ガバナンス、資本政策を統括し、各社の持続的成長を支えます。バックオフィス機能の共通化により、各社が事業に専念できる環境を整えます。</p>
-      </article>
-      <article class="biz-card">
-        <span class="biz-num">02</span>
-        <h3>事業投資・M&amp;A</h3>
-        <p>成長性のある事業や、事業承継を必要とする企業への投資・買収を行います。資本参加にとどまらず、経営参画を通じて中長期での企業価値向上に取り組みます。</p>
-      </article>
-      <article class="biz-card">
-        <span class="biz-num">03</span>
-        <h3>経営支援・ハンズオン</h3>
-        <p>財務・人事・DX・営業強化など、グループ各社の経営課題に対し実行支援を提供。現場に伴走し、計画を成果へとつなげるハンズオン型の支援を行います。</p>
-      </article>
-      <article class="biz-card">
-        <span class="biz-num">04</span>
-        <h3>新規事業・インキュベーション</h3>
-        <p>グループの知見とネットワークを活かし、新たな事業の立ち上げを支援。次世代の収益の柱となる事業を育成します。</p>
-      </article>
+    <div class="navcards">
+      <a href="about.html" class="navcard">
+        <span class="nc-en">About</span>
+        <span class="nc-jp">私たちについて</span>
+        <span class="nc-desc">理念・代表メッセージ・会社概要をご紹介します。</span>
+        <span class="nc-arrow">詳しく見る →</span>
+      </a>
+      <a href="business.html" class="navcard">
+        <span class="nc-en">Business</span>
+        <span class="nc-jp">事業内容</span>
+        <span class="nc-desc">グループ経営・投資・経営支援などの取り組み。</span>
+        <span class="nc-arrow">詳しく見る →</span>
+      </a>
+      <a href="group.html" class="navcard">
+        <span class="nc-en">Group</span>
+        <span class="nc-jp">グループ会社</span>
+        <span class="nc-desc">各領域で専門性を発揮するグループ各社。</span>
+        <span class="nc-arrow">詳しく見る →</span>
+      </a>
+      <a href="recruit.html" class="navcard">
+        <span class="nc-en">Recruit</span>
+        <span class="nc-jp">採用情報</span>
+        <span class="nc-desc">未来をともに照らす仲間を募集しています。</span>
+        <span class="nc-arrow">詳しく見る →</span>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ===== Group Companies ===== -->
-<section class="group" id="group">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-en">Group Companies</span>
-      <h2 class="section-title">グループ会社</h2>
-      <p class="section-desc">それぞれの領域で専門性を発揮するグループ各社をご紹介します。</p>
-    </div>
-    <div class="group-grid">
-      <article class="group-card featured">
-        <a href="https://www.gcc-japan.co.jp/" target="_blank" rel="noopener" class="group-logo-img" aria-label="株式会社GCC Japan 公式サイト">
-          <img src="assets/gcc_logo.png" alt="株式会社GCC Japan ロゴ">
-        </a>
-        <div class="group-body">
-          <h3>株式会社GCC Japan</h3>
-          <p class="group-field">ISO審査・認証事業 / SDGs認証</p>
-          <p>マネジメントシステム（ISO等）の第三者認証を手がける審査機関。2004年の認証事業開始以来、約2,800規格の認証実績を持ち、国内初・国内唯一のSDGs第三者認証制度を提供しています。</p>
-          <a href="https://www.gcc-japan.co.jp/" class="group-link" target="_blank" rel="noopener">公式サイトを見る ↗</a>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ===== News ===== -->
-<section class="news" id="news">
+<!-- ===== News (preview) ===== -->
+<section class="news">
   <div class="container">
     <div class="section-head">
       <span class="section-en">News</span>
@@ -187,102 +133,73 @@
       <li class="news-item">
         <time datetime="2026-04-01">2026.04.01</time>
         <span class="news-cat">お知らせ</span>
-        <a href="#">光ホールディングス株式会社のコーポレートサイトを公開しました。</a>
+        <a href="news.html">光ホールディングス株式会社のコーポレートサイトを公開しました。</a>
       </li>
       <li class="news-item">
         <time datetime="2026-03-15">2026.03.15</time>
         <span class="news-cat">プレスリリース</span>
-        <a href="#">グループ各社との連携体制について。</a>
+        <a href="news.html">グループ各社との連携体制について。</a>
       </li>
       <li class="news-item">
         <time datetime="2026-02-01">2026.02.01</time>
         <span class="news-cat">採用</span>
-        <a href="#">中途採用の募集を開始しました。</a>
+        <a href="news.html">中途採用の募集を開始しました。</a>
       </li>
     </ul>
-    <p class="news-note">※ 内容はサンプルです。実際のお知らせに差し替えます。</p>
-  </div>
-</section>
-
-<!-- ===== Recruit ===== -->
-<section class="recruit" id="recruit">
-  <div class="recruit-bg"></div>
-  <div class="container">
-    <div class="recruit-inner">
-      <span class="section-en light">Recruit</span>
-      <h2 class="recruit-title">未来を、ともに照らす仲間を。</h2>
-      <p>グループの成長を担い、企業の未来をつくる事業に挑戦したい方を募集しています。</p>
-      <a href="#contact" class="btn btn-primary">採用について問い合わせる</a>
+    <div class="section-foot">
+      <a href="news.html" class="more-link">お知らせ一覧へ <span class="arw">→</span></a>
     </div>
   </div>
 </section>
 
-<!-- ===== Contact ===== -->
-<section class="contact" id="contact">
+<!-- ===== Recruit CTA band ===== -->
+<section class="cta-band">
+  <div class="container cta-inner">
+    <span class="section-en light">Recruit</span>
+    <h2>未来を、ともに照らす仲間を。</h2>
+    <p>グループの成長を担い、企業の未来をつくる事業に挑戦したい方を募集しています。</p>
+    <a href="recruit.html" class="btn btn-primary">採用情報を見る</a>
+  </div>
+</section>
+
+<!-- ===== Contact CTA band ===== -->
+<section class="contact">
   <div class="container">
     <div class="section-head center">
       <span class="section-en">Contact</span>
       <h2 class="section-title">お問い合わせ</h2>
-      <p class="section-desc">ご相談・ご質問は、以下のフォームよりお気軽にお問い合わせください。</p>
+      <p class="section-desc">ご相談・ご質問は、お気軽にお問い合わせください。</p>
     </div>
-    <div class="contact-wrap">
-      <form class="contact-form" id="contactForm" novalidate>
-        <div class="field">
-          <label for="cf-name">お名前 <span class="req">必須</span></label>
-          <input type="text" id="cf-name" name="name" required placeholder="例）山田 太郎">
-        </div>
-        <div class="field">
-          <label for="cf-company">会社名</label>
-          <input type="text" id="cf-company" name="company" placeholder="例）株式会社○○">
-        </div>
-        <div class="field">
-          <label for="cf-email">メールアドレス <span class="req">必須</span></label>
-          <input type="email" id="cf-email" name="email" required placeholder="例）info@example.com">
-        </div>
-        <div class="field">
-          <label for="cf-msg">お問い合わせ内容 <span class="req">必須</span></label>
-          <textarea id="cf-msg" name="message" rows="5" required placeholder="お問い合わせ内容をご記入ください。"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary btn-full">送信する</button>
-        <p class="form-note" id="formNote" role="status"></p>
-      </form>
-      <div class="contact-info">
-        <h3>会社情報</h3>
-        <dl>
-          <dt>商号</dt><dd>光（あかり）ホールディングス株式会社</dd>
-          <dt>所在地</dt><dd>〒810-0022 福岡県福岡市中央区薬院4丁目13-62</dd>
-          <dt>設立</dt><dd>2024年10月</dd>
-          <dt>資本金</dt><dd>100万円</dd>
-          <dt>代表者</dt><dd>代表取締役社長 光山 聡</dd>
-          <dt>事業内容</dt><dd>グループ会社の統括運営</dd>
-        </dl>
-      </div>
+    <div class="section-foot" style="margin-top:8px">
+      <a href="contact.html" class="btn btn-primary">お問い合わせフォームへ</a>
     </div>
   </div>
 </section>
+
+</main>
 
 <!-- ===== Footer ===== -->
 <footer class="site-footer">
   <div class="container footer-inner">
     <div class="footer-brand">
-      <img class="logo-mark" src="assets/logo-mark.svg?v=3" alt="光ホールディングス ロゴ">
+      <img class="logo-mark" src="assets/logo-mark.svg?v=4" alt="光ホールディングス ロゴ">
       <div>
         <span class="logo-en">AKARI HOLDINGS</span>
         <span class="logo-jp">光ホールディングス株式会社</span>
       </div>
     </div>
     <nav class="footer-nav">
-      <a href="#about">私たちについて</a>
-      <a href="#business">事業内容</a>
-      <a href="#group">グループ会社</a>
-      <a href="#news">お知らせ</a>
-      <a href="#recruit">採用情報</a>
-      <a href="#contact">お問い合わせ</a>
+      <a href="about.html">私たちについて</a>
+      <a href="business.html">事業内容</a>
+      <a href="group.html">グループ会社</a>
+      <a href="news.html">お知らせ</a>
+      <a href="recruit.html">採用情報</a>
+      <a href="contact.html">お問い合わせ</a>
     </nav>
   </div>
   <div class="copyright">© 2026 AKARI HOLDINGS Co., Ltd. All Rights Reserved.</div>
 </footer>
 
-<script src="assets/main.js"></script>
+<script src="assets/main.js?v=4"></script>
 </body>
 </html>
