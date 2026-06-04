@@ -1,15 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="光ホールディングス ロゴ">
   <defs>
-    <linearGradient id="akariBg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#2b2b2b"/><stop offset="1" stop-color="#111"/>
+    <linearGradient id="akariNavy" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#26396b"/><stop offset="1" stop-color="#01091e"/>
     </linearGradient>
-    <linearGradient id="akariStar" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ff5a5a"/><stop offset="1" stop-color="#df3333"/>
+    <linearGradient id="akariGold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e6c878"/><stop offset="1" stop-color="#b8923f"/>
     </linearGradient>
   </defs>
-  <rect x="2" y="2" width="96" height="96" rx="16" fill="url(#akariBg)"/>
-  <!-- main four-point sparkle -->
-  <path d="M50 18 C53 40 60 47 82 50 C60 53 53 60 50 82 C47 60 40 53 18 50 C40 47 47 40 50 18 Z" fill="url(#akariStar)"/>
-  <!-- small accent spark -->
-  <path d="M74 26 C75 32 76 33 82 34 C76 35 75 36 74 42 C73 36 72 35 66 34 C72 33 73 32 74 26 Z" fill="#fff" opacity=".9"/>
+  <rect x="2" y="2" width="96" height="96" rx="16" fill="url(#akariNavy)"/>
+  <g fill="none" stroke="url(#akariGold)" stroke-width="4" stroke-linecap="round">
+    <!-- rays -->
+    <path d="M50 16 V25"/>
+    <path d="M30 24 L35 31"/>
+    <path d="M70 24 L65 31"/>
+  </g>
+  <!-- rising sun -->
+  <path d="M31 60 A19 19 0 0 1 69 60 Z" fill="url(#akariGold)"/>
+  <!-- horizon -->
+  <rect x="22" y="63.5" width="56" height="4" rx="2" fill="url(#akariGold)"/>
+  <!-- reflection -->
+  <rect x="33" y="73" width="34" height="3.4" rx="1.7" fill="#b8923f" opacity=".5"/>
 </svg>
