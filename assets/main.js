@@ -176,18 +176,36 @@
   if (form && note) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var name = form.name.value.trim();
-      var email = form.email.value.trim();
-      var msg = form.message.value.trim();
+      var val = function (n) { var el = form.elements[n]; return el ? el.value.trim() : ''; };
+      var name = val('name');
+      var email = val('email');
+      var msg = val('message');
       var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
       if (!name || !emailOk || !msg) {
         note.textContent = '必須項目をご確認ください（メールアドレスの形式もご確認ください）。';
         note.className = 'form-note err';
         return;
       }
-      note.textContent = '入力ありがとうございます。送信機能は現在デモのため、実装時にメール送信／フォーム連携を設定します。';
-      note.className = 'form-note ok';
-      form.reset();
+      var btn = form.querySelector('button[type="submit"]');
+      if (btn) btn.disabled = true;
+      note.textContent = '送信しています…';
+      note.className = 'form-note';
+      var body = new URLSearchParams(new FormData(form)).toString();
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body
+      }).then(function (r) {
+        if (!r.ok) throw new Error('status ' + r.status);
+        note.textContent = 'お問い合わせを送信しました。担当者より折り返しご連絡いたします。';
+        note.className = 'form-note ok';
+        form.reset();
+      }).catch(function () {
+        note.textContent = '送信に失敗しました。お手数ですが時間をおいて再度お試しください。';
+        note.className = 'form-note err';
+      }).then(function () {
+        if (btn) btn.disabled = false;
+      });
     });
   }
 })();
