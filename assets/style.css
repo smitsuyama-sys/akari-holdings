@@ -174,11 +174,8 @@ section{padding:96px 0;}
 .message-figure{position:relative;aspect-ratio:1/1;display:grid;place-items:center;}
 .figure-glow{position:absolute;inset:10%;border-radius:50%;background:radial-gradient(circle,rgba(31,47,84,.95),rgba(31,47,84,0) 70%);filter:blur(4px);}
 .figure-kanji{position:relative;font-size:clamp(7rem,16vw,12rem);font-weight:900;color:#fff;text-shadow:0 8px 40px rgba(184,146,63,.55);}
-.figure-illust{
-  position:relative;width:82%;max-width:310px;aspect-ratio:1/1;object-fit:cover;
-  border-radius:50%;border:5px solid var(--gold-light);
-  box-shadow:0 18px 46px rgba(1,9,30,.32),0 0 0 1px rgba(184,146,63,.45);
-}
+/* 5th business card spans full width on 2-col grid */
+.biz-grid .biz-card:last-child:nth-child(odd){grid-column:1 / -1;}
 
 /* ===== About / Philosophy ===== */
 .about{background:var(--light);}
