@@ -259,6 +259,7 @@ section{padding:96px 0;}
 .news-cat{background:var(--navy-dark);color:#fff;font-size:.72rem;font-weight:700;padding:4px 14px;border-radius:2px;min-width:104px;text-align:center;}
 .news-item a{color:var(--dark);font-weight:500;}
 .news-item a:hover{color:var(--blue-mid);}
+.news-text{color:var(--dark);font-weight:500;flex:1;}
 .news-note{margin-top:24px;color:var(--gold);font-size:.82rem;}
 
 /* ===== Recruit ===== */
