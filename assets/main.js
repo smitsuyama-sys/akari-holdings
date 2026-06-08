@@ -83,7 +83,9 @@
     if (path === '') path = 'index.html';
     document.querySelectorAll('.gnav ul a').forEach(function (a) {
       var href = (a.getAttribute('href') || '').split('/').pop();
-      if (href === path) { a.classList.add('active'); a.setAttribute('aria-current', 'page'); }
+      var match = href === path ||
+        (path.indexOf('business-') === 0 && href === 'business.html');
+      if (match) { a.classList.add('active'); a.setAttribute('aria-current', 'page'); }
     });
   })();
 

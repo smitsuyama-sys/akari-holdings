@@ -176,6 +176,10 @@ section{padding:96px 0;}
 .figure-kanji{position:relative;font-size:clamp(7rem,16vw,12rem);font-weight:900;color:#fff;text-shadow:0 8px 40px rgba(184,146,63,.55);}
 /* 5th business card spans full width on 2-col grid */
 .biz-grid .biz-card:last-child:nth-child(odd){grid-column:1 / -1;}
+.biz-more{display:inline-block;margin-top:16px;font-weight:700;font-size:.9rem;color:var(--blue-mid);letter-spacing:.03em;transition:.3s var(--ease);}
+.biz-card:hover .biz-more{color:var(--navy-dark);transform:translateX(4px);}
+/* detail page lead */
+.svc-lead{max-width:780px;color:var(--dark);font-size:1.05rem;line-height:1.95;margin-bottom:8px;}
 
 /* ===== About / Philosophy ===== */
 .about{background:var(--light);}
