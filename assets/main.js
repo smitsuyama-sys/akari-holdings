@@ -84,7 +84,8 @@
     document.querySelectorAll('.gnav ul a').forEach(function (a) {
       var href = (a.getAttribute('href') || '').split('/').pop();
       var match = href === path ||
-        (path.indexOf('business-') === 0 && href === 'business.html');
+        (path.indexOf('business-') === 0 && href === 'business.html') ||
+        (path.indexOf('news-') === 0 && href === 'news.html');
       if (match) { a.classList.add('active'); a.setAttribute('aria-current', 'page'); }
     });
   })();

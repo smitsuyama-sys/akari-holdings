@@ -260,6 +260,14 @@ section{padding:96px 0;}
 .news-item a{color:var(--dark);font-weight:500;}
 .news-item a:hover{color:var(--blue-mid);}
 .news-text{color:var(--dark);font-weight:500;flex:1;}
+a.news-text:hover{color:var(--blue-mid);}
+
+/* News article (detail) */
+.article{max-width:780px;}
+.article-meta{display:flex;align-items:center;gap:16px;margin-bottom:28px;}
+.article-meta time{font-family:"Archivo",sans-serif;color:var(--grey);font-weight:600;font-size:.95rem;}
+.article-body p{margin-bottom:20px;color:var(--dark);line-height:1.95;}
+.article-sign{margin-top:30px;color:var(--dark);font-weight:500;text-align:right;}
 .news-note{margin-top:24px;color:var(--gold);font-size:.82rem;}
 
 /* ===== Recruit ===== */
