@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="四光星">
-  <defs><linearGradient id="gS" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8cd82"/><stop offset="1" stop-color="#b8923f"/></linearGradient></defs>
-  <path d="M120 34 C128 96 144 112 206 120 C144 128 128 144 120 206 C112 144 96 128 34 120 C96 112 112 96 120 34 Z" fill="url(#gS)"/>
-  <path d="M176 58 C178 72 180 74 194 76 C180 78 178 80 176 94 C174 80 172 78 158 76 C172 74 174 72 176 58 Z" fill="url(#gS)" opacity=".85"/>
-</svg>
