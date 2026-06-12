@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Aモノグラム">
+  <defs><linearGradient id="gA" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#e8cd82"/><stop offset="1" stop-color="#b8923f"/></linearGradient></defs>
+  <g fill="none" stroke="url(#gA)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M82 178 L120 56 L158 178"/>
+    <path d="M99 134 H141"/>
+  </g>
+  <path d="M120 24 L125 40 L141 45 L125 50 L120 66 L115 50 L99 45 L115 40 Z" fill="url(#gA)"/>
+</svg>
