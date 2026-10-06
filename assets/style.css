@@ -567,3 +567,56 @@ a.news-text:hover{color:var(--blue-mid);}
   .scroll-progress,.to-top{display:none!important;}
   html{scroll-behavior:auto;}
 }
+
+/* ===== 準備度診断 ===== */
+.shindan{background:var(--light);}
+.sd-app{max-width:760px;margin:0 auto;scroll-margin-top:100px;}
+.sd-card{background:#fff;border:1px solid var(--border);border-radius:6px;padding:40px;margin-bottom:24px;}
+.sd-progress{height:4px;background:var(--soft);border-radius:2px;overflow:hidden;margin-bottom:28px;}
+.sd-progress span{display:block;height:100%;background:var(--gold);transition:width .4s var(--ease);}
+.sd-step{font-family:"Archivo",sans-serif;font-weight:600;color:var(--gold);letter-spacing:.12em;font-size:.85rem;margin-bottom:10px;}
+.sd-step span{color:var(--grey);}
+.sd-q{font-size:clamp(1.2rem,2.4vw,1.5rem);font-weight:700;color:var(--ink);line-height:1.6;margin-bottom:24px;}
+.sd-hint{color:var(--grey);font-size:.9rem;margin:-12px 0 20px;}
+.sd-options{display:grid;gap:12px;}
+.sd-opt{display:block;width:100%;text-align:left;padding:16px 20px;border:1px solid var(--border);border-radius:4px;background:#fcfcfc;font:inherit;font-size:1rem;color:var(--dark);cursor:pointer;transition:.2s var(--ease);}
+.sd-opt:hover{border-color:var(--blue-mid);background:#fff;}
+.sd-opt.on{border-color:var(--navy);background:var(--navy);color:#fff;}
+.sd-nav{display:flex;justify-content:space-between;align-items:center;margin-top:24px;gap:12px;}
+.sd-back{background:none;border:none;color:var(--grey);font:inherit;cursor:pointer;padding:8px 0;}
+.sd-back:hover{color:var(--blue-mid);}
+.sd-nav .btn{margin-left:auto;border:none;cursor:pointer;font:inherit;}
+.sd-meters{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px;}
+.sd-meter-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;font-weight:700;color:var(--ink);font-size:.92rem;}
+.sd-meter-top b{font-family:"Archivo",sans-serif;font-size:1.8rem;color:var(--navy);}
+.sd-meter-bar{height:8px;background:var(--soft);border-radius:4px;overflow:hidden;}
+.sd-meter-bar span{display:block;height:100%;background:linear-gradient(90deg,var(--blue-mid),var(--navy));}
+.sd-h3{font-size:1.1rem;font-weight:700;color:var(--ink);margin-bottom:14px;}
+.sd-points{list-style:none;margin-bottom:28px;}
+.sd-points li{position:relative;padding:0 0 12px 22px;line-height:1.85;}
+.sd-points li::before{content:"◇";position:absolute;left:0;color:var(--gold);}
+.sd-reco{border-left:3px solid var(--gold);background:var(--light);padding:20px 24px;}
+.sd-reco-label{display:block;font-size:.8rem;color:var(--grey);font-weight:700;margin-bottom:4px;}
+.sd-reco-name{display:inline-block;font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.sd-reco-name:hover{color:var(--blue-mid);}
+.sd-reco p{line-height:1.8;font-size:.95rem;}
+.sd-form .btn{border:none;cursor:pointer;font:inherit;}
+.sd-consent{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;margin:4px 0 22px;line-height:1.6;}
+.sd-consent input{margin-top:5px;}
+.sd-ai{margin-top:28px;padding-top:28px;border-top:1px solid var(--border);}
+.sd-ai p{line-height:1.95;margin-bottom:16px;}
+.sd-disclaimer{color:var(--grey);font-size:.8rem;text-align:center;line-height:1.7;}
+@media (max-width:640px){
+  .sd-card{padding:28px 20px;}
+  .sd-meters{grid-template-columns:1fr;}
+}
+
+/* ===== コラム ===== */
+.column-article .article-body h2{font-size:1.25rem;font-weight:700;color:var(--ink);margin:40px 0 16px;padding-left:14px;border-left:3px solid var(--gold);line-height:1.5;}
+.column-article .article-body h3{font-size:1.05rem;font-weight:700;color:var(--ink);margin:28px 0 12px;}
+.column-article .article-body ul{margin:0 0 20px 1.4em;line-height:1.9;}
+.column-article .article-body a{color:var(--blue-mid);text-decoration:underline;}
+.column-cta{margin:48px 0 0;padding:32px;background:var(--light);border-radius:6px;text-align:center;}
+.column-cta p{margin-bottom:18px;font-weight:500;color:var(--ink);}
+.column-note,.column-sources{margin-top:24px;color:var(--grey);font-size:.82rem;line-height:1.7;}
+.column-sources a{color:var(--grey);text-decoration:underline;word-break:break-all;}

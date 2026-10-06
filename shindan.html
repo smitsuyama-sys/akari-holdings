@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>採用情報 | 光（あかり）ホールディングス株式会社</title>
-<meta name="description" content="光（あかり）ホールディングス株式会社の採用情報。未来をともに照らす仲間を募集しています。">
+<title>事業承継・M&amp;A 準備度診断 | 光（あかり）ホールディングス株式会社</title>
+<meta name="description" content="9つの質問に答えるだけで、事業承継・M&amp;Aの準備度と次の一歩がわかる無料診断です。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Archivo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
@@ -43,39 +43,35 @@
 
 <section class="page-hero">
   <div class="page-hero-inner">
-    <span class="page-en">Recruit</span>
-    <h1 class="page-title">採用情報</h1>
-    <p class="breadcrumb"><a href="index.html">ホーム</a><span class="sep">/</span>採用情報</p>
+    <span class="page-en">Diagnosis</span>
+    <h1 class="page-title">事業承継・M&amp;A 準備度診断</h1>
+    <p class="breadcrumb"><a href="index.html">ホーム</a><span class="sep">/</span>準備度診断</p>
   </div>
 </section>
 
-<section class="business">
+<section class="shindan">
   <div class="container">
     <div class="section-head center">
-      <span class="section-en">Recruit</span>
-      <h2 class="section-title">受け継ぎ、次の時代へ。ともに照らす仲間を。</h2>
-      <p class="section-desc">企業の「次」を支え、地域と社会に必要とされる事業を未来へつなぐ。その使命に挑む仲間を募集しています。</p>
+      <span class="section-en">3 minutes</span>
+      <h2 class="section-title">9つの質問で、会社の「現在地」を。</h2>
+      <p class="section-desc">承継の準備度と、今とるべき次の一歩がわかります。回答は無料・匿名で、結果はすぐに表示されます。</p>
     </div>
-    <div class="recruit-points">
-      <div class="rp-card">
-        <span class="rp-icon">◇</span>
-        <h3>事業の「次」をつくる</h3>
-        <p>後継者課題に向き合い、企業の未来を一緒に描く。社会的意義の大きい仕事です。</p>
-      </div>
-      <div class="rp-card">
-        <span class="rp-icon">◇</span>
-        <h3>長期で価値を育てる</h3>
-        <p>短期の成果ではなく、受け継いだ事業を長期の視点で成長へと導きます。</p>
-      </div>
-      <div class="rp-card">
-        <span class="rp-icon">◇</span>
-        <h3>誠実な仲間と働く</h3>
-        <p>誠実・長期・共創を大切にする仲間とともに、地域と社会に必要とされる事業を育てます。</p>
-      </div>
+    <div id="shindanApp" class="sd-app">
+      <noscript><p>診断のご利用にはJavaScriptを有効にしてください。</p></noscript>
     </div>
-    <div class="section-foot">
-      <a href="contact.html" class="btn btn-primary">採用について問い合わせる</a>
-    </div>
+    <form name="shindan" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input name="bot-field">
+  <input name="company">
+  <input name="name">
+  <input name="email">
+  <input name="phone">
+  <input name="consent">
+  <input name="tier">
+  <input name="readiness">
+  <input name="urgency">
+  <input name="service">
+  <input name="answers">
+</form>
   </div>
 </section>
 
@@ -105,5 +101,6 @@
 </footer>
 
 <script src="assets/main.js?v=15"></script>
+<script type="module" src="assets/shindan.js?v=15"></script>
 </body>
 </html>
