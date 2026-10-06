@@ -1,0 +1,26 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+  included_files = ["assets/shindan-core.mjs"]
+
+# 運用用ファイルや開発用ファイルは公開しない
+[[redirects]]
+  from = "/ops/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/netlify/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/wallpaper/*"
+  to = "/404.html"
+  status = 404
+  force = true
