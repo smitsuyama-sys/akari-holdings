@@ -1,5 +1,5 @@
 // 事業承継・M&A 準備度診断 — 画面制御
-import { QUESTIONS, SERVICES, scoreAnswers, ruleReport } from './shindan-core.mjs';
+import { QUESTIONS, SERVICES, scoreAnswers, ruleReport, labelOf } from './shindan-core.mjs';
 
 const root = document.getElementById('shindanApp');
 if (root) init();
@@ -142,8 +142,10 @@ function init() {
     const fd = new URLSearchParams({
       'form-name': 'shindan', 'bot-field': form.elements['bot-field'].value,
       ...contact, consent: 'yes',
-      tier: s.tier, readiness: String(s.readiness), urgency: String(s.urgency),
-      service: SERVICES[s.service].name, answers: JSON.stringify(answers)
+      tier: `${s.tier}（見込み度：A=高 / B=中 / C=低）`,
+      readiness: `${s.readiness} / 100`, urgency: `${s.urgency} / 100`,
+      service: SERVICES[s.service].name,
+      answers: QUESTIONS.map(q => `■ ${q.title}\n  → ${labelOf(q.id, answers[q.id]) || '（選択なし）'}`).join('\n')
     });
     try {
       const r = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: fd.toString() });
