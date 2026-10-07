@@ -22,7 +22,7 @@ if (site !== DEFAULT_ORIGIN) {
 }
 
 const pages = readdirSync('.')
-  .filter(f => f.endsWith('.html') && f !== '404.html')
+  .filter(f => f.endsWith('.html') && f !== '404.html' && !/^google[0-9a-f]+\.html$/.test(f))
   .sort()
   .map(f => {
     const html = readFileSync(f, 'utf8');
