@@ -23,7 +23,8 @@
 5. Web検索で、公的機関（中小企業庁、国税庁、経済産業省、日本政策金融公庫など）の一次情報を中心に確認する。
 6. 記事を書く。
    - ファイル名：`column-NN.html`（既存の最大番号 + 1、2桁ゼロ埋め）
-   - `column-01.html` をひな形にし、`<title>`、`meta description`、パンくず、日付、カテゴリ、本文、を差し替える
+   - `column-01.html` をひな形にし、`<title>`、`meta description`、共有用タグ（`og:title`・`og:description`・`og:url`・`canonical` のファイル名部分）、パンくず、日付、カテゴリ、本文、を差し替える
+   - `og:image` はそのまま（`assets/og-image.png`）。サイトマップ（sitemap.xml）は公開時に自動生成されるので編集不要
    - 本文 1,800〜2,500字。`<h2>` で3〜5見出し。経営者が読んで分かる平易な日本語
    - 末尾の診断への誘導（`.column-cta`）と注意書き（`.column-note`）は残す
    - 数値・制度・法令に触れた場合は、本文末尾に `<p class="column-sources">参考：<a href="URL">出典名</a>…</p>` を入れる

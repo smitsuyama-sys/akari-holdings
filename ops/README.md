@@ -28,3 +28,15 @@ Site configuration → Environment variables に次を登録してください�
 
 ## 公開されないファイル
 `ops/`・`netlify/`・`wallpaper/` は `netlify.toml` の設定でサイト上には公開されません。
+
+## 検索エンジン（Google Search Console）
+- `sitemap.xml` と `robots.txt` は公開（デプロイ）のたびに `scripts/build-sitemap.mjs` が自動生成します。
+- Search Console で「URL プレフィックス」としてサイトを登録し、「サイトマップ」に `sitemap.xml` を送信します。
+- 所有権の確認に「HTML タグ」を選んだ場合は、表示された `<meta name="google-site-verification" ...>` を全ページの `<head>` に追加します。
+
+## 独自ドメイン
+- Netlify の「ドメイン管理」で独自ドメインを追加すると、サイトマップ・共有用タグ（og:url / og:image / canonical）のURLは次回の公開から自動で新しいドメインに置き換わります。
+- 切り替え後は Search Console に新しいドメインも登録してください。
+
+## SNS
+- プロフィール文と最初の投稿は `ops/sns/start-kit.md` にあります。
