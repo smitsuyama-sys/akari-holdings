@@ -160,3 +160,83 @@ export function labelOf(qid, v) {
   const vals = Array.isArray(v) ? v : [v];
   return vals.map(x => (q.options.find(o => o.v === x) || {}).label).filter(Boolean).join('、');
 }
+
+// ===== 詳細レポート用の追加質問 =====
+export const EXTRA_QUESTIONS = [
+  { id: 'industry', title: '業種', type: 'single', options: [
+    { v: 'manufacturing', label: '製造業' }, { v: 'construction', label: '建設業' },
+    { v: 'trade', label: '卸売・小売業' }, { v: 'service', label: 'サービス業' },
+    { v: 'it', label: 'IT・情報通信' }, { v: 'logistics', label: '運輸・物流' },
+    { v: 'care', label: '医療・介護' }, { v: 'food', label: '飲食・宿泊' },
+    { v: 'realestate', label: '不動産' }, { v: 'other', label: 'その他' }
+  ] },
+  { id: 'employees', title: '従業員数', type: 'single', options: [
+    { v: 'lt10', label: '10人以下' }, { v: '11to30', label: '11〜30人' },
+    { v: '31to100', label: '31〜100人' }, { v: '101to300', label: '101〜300人' }, { v: 'gt300', label: '301人以上' }
+  ] },
+  { id: 'profit', title: '利益の状況', type: 'single', options: [
+    { v: 'stable', label: '安定して黒字' }, { v: 'unstable', label: '黒字だが年によって波がある' },
+    { v: 'even', label: '収支はほぼトントン' }, { v: 'loss', label: '赤字' }
+  ] },
+  { id: 'equity', title: '純資産（資産から負債を引いたもの）', type: 'single', options: [
+    { v: 'positive', label: 'プラス（資産超過）' }, { v: 'zero', label: 'ほぼゼロ' },
+    { v: 'negative', label: 'マイナス（債務超過）' }, { v: 'unknown', label: 'わからない' }
+  ] },
+  { id: 'shareholders', title: '株主の構成', type: 'single', options: [
+    { v: 'owner', label: '社長がほぼすべての株を持っている' }, { v: 'family', label: '親族で分散して持っている' },
+    { v: 'staff', label: '役員・社員も持っている' }, { v: 'outside', label: '社外の株主がいる' }, { v: 'unknown', label: 'わからない' }
+  ] },
+  { id: 'guarantee', title: '借入と個人保証', type: 'single', options: [
+    { v: 'none', label: '借入はない' }, { v: 'loan', label: '借入はあるが、社長の個人保証はない' },
+    { v: 'guaranteed', label: '借入があり、社長が個人保証をしている' }
+  ] },
+  { id: 'dependency', title: '取引先の分散', type: 'single', options: [
+    { v: 'high', label: '特定の取引先に売上の大半を頼っている' }, { v: 'mid', label: 'ある程度分散している' },
+    { v: 'low', label: '十分に分散している' }
+  ] },
+  { id: 'keyperson', title: '社長への依存度', type: 'single', options: [
+    { v: 'high', label: '社長がいないと会社が回らない' }, { v: 'mid', label: '一部は幹部に任せられる' },
+    { v: 'low', label: '日常の経営は幹部に任せられる' }
+  ] },
+  { id: 'priorities', title: '承継で特に大切にしたいこと（複数選択可）', type: 'multi', options: [
+    { v: 'employees', label: '社員の雇用' }, { v: 'brand', label: '社名・ブランド' },
+    { v: 'partners', label: '取引先との関係' }, { v: 'price', label: '譲渡の対価' },
+    { v: 'retire', label: '早めに引退したい' }, { v: 'region', label: '地域への貢献' }
+  ] }
+];
+
+export function labelOfExtra(qid, v) {
+  const q = EXTRA_QUESTIONS.find(q => q.id === qid);
+  if (!q) return '';
+  const vals = Array.isArray(v) ? v : [v];
+  return vals.map(x => (q.options.find(o => o.v === x) || {}).label).filter(Boolean).join('、');
+}
+
+// 回答を、設問に存在する選択肢だけに絞る（サーバー側の入力チェック用）
+export function sanitize(questions, raw) {
+  const out = {};
+  for (const q of questions) {
+    const ok = new Set(q.options.map(o => o.v));
+    const v = raw?.[q.id];
+    if (q.type === 'multi') out[q.id] = (Array.isArray(v) ? v : []).filter(x => ok.has(x));
+    else if (ok.has(v)) out[q.id] = v;
+  }
+  return out;
+}
+
+// レーダーチャート用の6つの観点（0-100、高いほど承継に向けて整っている）
+export function dimensions(a, x = {}) {
+  const avg = (...vs) => { const n = vs.filter(v => v != null); return n.length ? Math.round(n.reduce((s, v) => s + v, 0) / n.length) : 50; };
+  return [
+    { key: 'successor', label: '後継者の見通し', score: pts({ family: 85, internal: 70, none: 25, undecided: 15 }, a.successor) || 30 },
+    { key: 'finance', label: '財務の健全性', score: avg(
+      { stable: 90, unstable: 65, even: 40, loss: 20 }[x.profit],
+      { positive: 90, zero: 45, negative: 15, unknown: 40 }[x.equity]) },
+    { key: 'records', label: '数字・資料の整理', score: pts({ ready: 90, partial: 55, notyet: 20 }, a.finance) || 40 },
+    { key: 'system', label: '経営の仕組み化', score: { high: 25, mid: 60, low: 90 }[x.keyperson] ?? 50 },
+    { key: 'business', label: '取引の安定性', score: { high: 30, mid: 65, low: 90 }[x.dependency] ?? 50 },
+    { key: 'time', label: '時間的な余裕', score: avg(
+      { lt50: 90, '50s': 70, '60s': 45, '70p': 20 }[a.age],
+      { lt1: 20, '1to3': 50, '3to5': 75, undecided: 60 }[a.timing]) }
+  ];
+}
