@@ -100,8 +100,8 @@ function init() {
         </div>
       </div>
       <div class="sd-card">
-        <h3 class="sd-h3">詳しい個別レポートを無料で受け取る</h3>
-        <p class="sd-hint">回答内容をもとに、論点と次の一歩を整理したレポートをお送りします。営業目的の電話はいたしません。</p>
+        <h3 class="sd-h3">詳しい個別レポートを無料で見る</h3>
+        <p class="sd-hint">回答内容をもとに、論点と次の一歩を整理したレポートをこの画面に表示します。ご希望の方には、担当者から詳しくご説明します。営業目的の電話はいたしません。</p>
         <form class="sd-form" id="sdForm" novalidate>
           <input type="hidden" name="form-name" value="shindan">
           <p hidden><label>bot <input name="bot-field"></label></p>
@@ -110,7 +110,7 @@ function init() {
           <div class="field"><label>メールアドレス<span class="req">必須</span></label><input name="email" type="email" autocomplete="email" required></div>
           <div class="field"><label>電話番号（任意）</label><input name="phone" type="tel" autocomplete="tel"></div>
           <label class="sd-consent"><input type="checkbox" name="consent" value="yes" required> 回答内容を当社からのご連絡に利用することに同意します</label>
-          <button type="submit" class="btn btn-primary btn-full">レポートを受け取る</button>
+          <button type="submit" class="btn btn-primary btn-full">レポートを見る</button>
           <p class="form-note" id="sdNote" role="status"></p>
         </form>
         <div id="sdAi"></div>
@@ -171,9 +171,13 @@ function init() {
       if (!r.ok || !data.report) throw new Error('no report');
       box.innerHTML = `<div class="sd-ai"><h3 class="sd-h3">個別レポート</h3>${
         data.report.split(/\n{2,}/).map(p => `<p>${esc(p).replace(/\n/g, '<br>')}</p>`).join('')}</div>`;
-      note.textContent = data.emailed ? '同じ内容をメールでもお送りしました。' : 'ありがとうございました。担当者よりご連絡いたします。';
+      note.textContent = data.emailed ? '同じ内容をメールでもお送りしました。' : 'ありがとうございました。内容を確認のうえ、担当者よりご連絡いたします。';
     } catch {
-      note.textContent = 'ありがとうございました。個別レポートは担当者より追ってお送りいたします。';
+      // サーバー側でレポートを作れなかったときは、画面上で定型のレポートを表示する
+      const svc = SERVICES[s.service];
+      const paras = [...ruleReport(answers, s), `${svc.name}では、${svc.why}`];
+      box.innerHTML = `<div class="sd-ai"><h3 class="sd-h3">個別レポート</h3>${paras.map(p => `<p>${esc(p)}</p>`).join('')}</div>`;
+      note.textContent = 'ありがとうございました。内容を確認のうえ、担当者よりご連絡いたします。';
     }
   }
 
