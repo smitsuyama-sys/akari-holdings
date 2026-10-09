@@ -216,7 +216,7 @@ function init() {
         ? (fin.emailed ? 'レポートのページのURLを、ご登録のメールアドレスにもお送りしました。' : 'このあと表示するページのURLを保存しておくと、あとからいつでもご覧いただけます。')
           + (fin.tier === 'A' ? '<br>担当者がレポートの内容を確認し、補足を添えて改めてご連絡いたします。' : '')
         : 'お手数ですが、少し時間をおいてから下のボタンでレポートを開き直してください。内容を確認のうえ、担当者よりご連絡いたします。'}</p>
-      <a class="btn btn-primary btn-full" href="${job.url}">詳細レポートを開く</a></div>`;
+      <a class="btn btn-primary btn-full" href="report.html?id=${encodeURIComponent(job.id)}">詳細レポートを開く</a></div>`;
   }
 
   renderQuestion();
