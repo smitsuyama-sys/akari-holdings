@@ -17,7 +17,8 @@ Site configuration → Environment variables に次を登録してください�
 | `MAIL_FROM` | 送信元。例 `光ホールディングス <info@example.co.jp>`（Resend でドメイン認証が必要） | 同上 |
 | `STAFF_EMAIL` | 担当者の通知先メールアドレス | 同上 |
 | `BOOKING_URL` | 面談予約ページ（Googleカレンダーの予約スケジュール等）のURL | 任意 |
-| `AI_TIMEOUT_MS` | AI の待ち時間（ミリ秒、既定 20000） | 任意 |
+| `REPLY_TO` | 利用者がメールに返信したときの宛先（未設定なら `STAFF_EMAIL`） | 任意 |
+| `AI_TIMEOUT_MS` | AI の待ち時間（ミリ秒、既定 25000） | 任意 |
 
 - 未設定でも診断ツールは動き、定型レポートが画面に表示されます（メールは送られません）。
 - 自動メールを有効にしたら、`assets/shindan.js` の案内文（「この画面に表示します」「レポートを見る」）を「メールでもお送りします」に戻してください。

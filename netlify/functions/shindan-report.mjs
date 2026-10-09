@@ -6,6 +6,7 @@
 //   MAIL_FROM          任意。送信元（例: 光ホールディングス <info@example.co.jp>）
 //   STAFF_EMAIL        任意。担当者の通知先
 //   BOOKING_URL        任意。見込み度Aの方に案内する面談予約ページのURL
+//   REPLY_TO           任意。利用者がメールに返信したときの宛先（未設定なら STAFF_EMAIL）
 import Anthropic from '@anthropic-ai/sdk';
 import { QUESTIONS, SERVICES, scoreAnswers, ruleReport, labelOf } from '../../assets/shindan-core.mjs';
 
@@ -79,7 +80,7 @@ export default async (req) => {
 };
 
 async function writeReport(answers, score, service) {
-  const client = new Anthropic({ timeout: Number(process.env.AI_TIMEOUT_MS || 20000), maxRetries: 0 });
+  const client = new Anthropic({ timeout: Number(process.env.AI_TIMEOUT_MS || 25000), maxRetries: 0 });
   const lines = QUESTIONS.map(q => `- ${q.title} → ${labelOf(q.id, answers[q.id]) || '未回答'}`);
   const prompt = `診断の回答:\n${lines.join('\n')}\n\n` +
     `承継の準備度: ${score.readiness}/100\n早めに動くべき度合い: ${score.urgency}/100\n` +
@@ -105,11 +106,12 @@ async function sendMails(contact, score, service, report, answers) {
   const from = process.env.MAIL_FROM;
   if (!key || !from) return false;
 
+  const replyTo = process.env.REPLY_TO || process.env.STAFF_EMAIL;
   const send = async (payload) => {
     const r = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ from, ...payload })
+      body: JSON.stringify({ from, ...(replyTo ? { reply_to: replyTo } : {}), ...payload })
     });
     if (!r.ok) throw new Error(`resend ${r.status}: ${await r.text()}`);
   };
