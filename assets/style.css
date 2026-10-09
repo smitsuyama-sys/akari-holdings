@@ -629,3 +629,28 @@ a.news-text:hover{color:var(--blue-mid);}
 .message-photo figcaption{margin-top:20px;display:flex;align-items:baseline;gap:14px;text-align:left;}
 .mp-role{font-size:.82rem;color:var(--grey);letter-spacing:.06em;}
 .mp-name{font-size:1.25rem;font-weight:700;color:var(--ink);letter-spacing:.12em;}
+
+/* ===== コラムの図解 ===== */
+.col-fig{margin:36px 0 40px;padding:28px 24px;background:var(--light);border-radius:6px;}
+.col-fig-ttl{font-weight:700;color:var(--ink);font-size:1rem;margin-bottom:20px;padding-left:12px;border-left:3px solid var(--gold);}
+.col-fig-note{margin:14px 0 0 !important;font-size:.8rem;color:var(--grey);line-height:1.6 !important;}
+.col-flow{list-style:none;margin:0 !important;padding:0;display:grid;gap:0;counter-reset:none;}
+.col-flow li{position:relative;display:grid;grid-template-columns:76px 1fr;column-gap:16px;row-gap:2px;padding:14px 16px;background:#fff;border:1px solid var(--border);border-radius:4px;margin-bottom:22px;}
+.col-flow li:last-child{margin-bottom:0;border-color:var(--gold);}
+.col-flow li:not(:last-child)::after{content:"";position:absolute;left:50%;bottom:-17px;margin-left:-8px;border:8px solid transparent;border-top:9px solid var(--navy);border-bottom:0;}
+.cf-phase{grid-row:1 / span 3;align-self:center;text-align:center;font-size:.78rem;font-weight:700;color:#fff;background:var(--navy);border-radius:3px;padding:8px 4px;}
+.col-flow li:last-child .cf-phase{background:var(--gold);}
+.cf-no{font-family:"Archivo",sans-serif;font-size:.72rem;letter-spacing:.12em;color:var(--gold);font-weight:600;}
+.col-flow b{color:var(--ink);font-size:1rem;line-height:1.5;}
+.col-flow li > span:last-child{font-size:.88rem;color:var(--dark);line-height:1.7;}
+.col-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.col-table{width:100%;border-collapse:collapse;background:#fff;font-size:.88rem;line-height:1.7;min-width:520px;}
+.col-table th,.col-table td{border:1px solid var(--border);padding:12px 14px;vertical-align:top;text-align:left;}
+.col-table thead th{background:var(--navy);color:#fff;font-weight:700;text-align:center;vertical-align:middle;}
+.col-table thead th:first-child{background:transparent;border-color:transparent;border-bottom-color:var(--border);}
+.col-table tbody th{background:var(--soft);color:var(--ink);font-weight:700;white-space:nowrap;}
+.col-compare{min-width:600px;}
+@media (max-width:640px){
+  .col-fig{padding:22px 14px;margin-left:-8px;margin-right:-8px;}
+  .col-flow li{grid-template-columns:64px 1fr;column-gap:12px;padding:12px;}
+}

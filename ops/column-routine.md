@@ -27,6 +27,10 @@
    - `og:image` はそのまま（`assets/og-image.png`）。サイトマップ（sitemap.xml）は公開時に自動生成されるので編集不要
    - 本文 1,800〜2,500字。`<h2>` で3〜5見出し。経営者が読んで分かる平易な日本語
    - 末尾の診断への誘導（`.column-cta`）と注意書き（`.column-note`）は残す
+   - **図解を1〜2点入れる**（読者が流れや違いをひと目でつかめるように）。画像は使わず、既存のクラスで HTML として書く：
+     - 手順・流れ → `<figure class="col-fig">` ＋ `<ol class="col-flow">`（各 `<li>` に `.cf-phase`・`.cf-no`・`<b>`見出し・説明 `<span>`）。例は `column-02.html`
+     - 比較・違い → `<figure class="col-fig">` ＋ `<div class="col-table-wrap"><table class="col-table">`。例は `column-01.html`・`column-02.html`
+     - 図の中の数値・事実も、本文と同じく出典で確認できたものだけにする
    - 数値・制度・法令に触れた場合は、本文末尾に `<p class="column-sources">参考：<a href="URL">出典名</a>…</p>` を入れる
 7. `column.html` の `<!-- COLUMN-LIST:START ... -->` の直下に、新しい記事の `<li class="news-item">` を追加する（新しい順）。
 8. SNS 投稿文を `ops/sns/YYYY-MM-DD.md` に書く：
