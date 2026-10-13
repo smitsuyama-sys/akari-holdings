@@ -21,6 +21,69 @@ if (site !== DEFAULT_ORIGIN) {
   }
 }
 
+// 検索エンジン向けの構造化データ（JSON-LD）を各ページに差し込む。
+// 会社情報・パンくず・記事情報を Google に正しく伝え、社名検索や記事の表示を助ける。
+// 毎日追加されるコラムにも、デプロイのたびに自動で付く。
+const ORG = {
+  '@type': 'Organization',
+  '@id': `${site}/#organization`,
+  name: '光（あかり）ホールディングス株式会社',
+  alternateName: ['光ホールディングス株式会社', '光ホールディングス', 'あかりホールディングス', 'AKARI HOLDINGS'],
+  url: `${site}/`,
+  logo: `${site}/assets/og-image.png`,
+  foundingDate: '2023-10-23',
+  founder: { '@type': 'Person', name: '光山 聡', jobTitle: '代表取締役社長' },
+  address: {
+    '@type': 'PostalAddress', postalCode: '810-0022', addressCountry: 'JP',
+    addressRegion: '福岡県', addressLocality: '福岡市中央区', streetAddress: '薬院4丁目13-62'
+  },
+  areaServed: '日本',
+  knowsAbout: ['事業承継', 'M&A', 'MBO', 'M&Aセカンドオピニオン', 'グループ経営']
+};
+const SECTION = [
+  [/^business-/, '事業内容', 'business.html'],
+  [/^column-/, 'コラム', 'column.html'],
+  [/^news-/, 'お知らせ', 'news.html']
+];
+const text = s => s.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+const urlOf = f => f === 'index.html' ? `${site}/` : `${site}/${f}`;
+
+for (const f of htmlFiles) {
+  if (f === '404.html' || f === 'report.html' || /^google[0-9a-f]+\.html$/.test(f)) continue;
+  let html = readFileSync(f, 'utf8');
+  if (html.includes('data-jsonld')) continue;
+  const graph = [];
+  if (f === 'index.html') {
+    graph.push(ORG, { '@type': 'WebSite', '@id': `${site}/#website`, url: `${site}/`, name: ORG.name, inLanguage: 'ja', publisher: { '@id': ORG['@id'] } });
+  } else {
+    const h1 = (html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/) || [])[1];
+    if (!h1) continue;
+    const name = text(h1);
+    const items = [{ name: 'ホーム', item: `${site}/` }];
+    const sec = SECTION.find(([re]) => re.test(f));
+    if (sec) items.push({ name: sec[1], item: urlOf(sec[2]) });
+    items.push({ name, item: urlOf(f) });
+    graph.push({
+      '@type': 'BreadcrumbList',
+      itemListElement: items.map((x, i) => ({ '@type': 'ListItem', position: i + 1, ...x }))
+    });
+    const date = (html.match(/<time datetime="(\d{4}-\d{2}-\d{2})"/) || [])[1];
+    if (/^(column|news)-/.test(f) && date) {
+      const desc = (html.match(/<meta name="description" content="([^"]*)"/) || [])[1];
+      graph.push({
+        '@type': /^column-/.test(f) ? 'Article' : 'NewsArticle',
+        headline: name, description: desc, datePublished: date, dateModified: date,
+        mainEntityOfPage: urlOf(f), image: `${site}/assets/og-image.png`, inLanguage: 'ja',
+        author: { '@type': 'Organization', name: ORG.name, url: `${site}/` },
+        publisher: { '@id': ORG['@id'], '@type': 'Organization', name: ORG.name, logo: { '@type': 'ImageObject', url: ORG.logo } }
+      });
+    }
+  }
+  const json = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
+  html = html.replace('</head>', `<script type="application/ld+json" data-jsonld>${json}</script>\n</head>`);
+  writeFileSync(f, html);
+}
+
 const pages = readdirSync('.')
   .filter(f => f.endsWith('.html') && f !== '404.html' && f !== 'report.html' && !/^google[0-9a-f]+\.html$/.test(f))
   .sort()
