@@ -7,6 +7,13 @@
   node_bundler = "esbuild"
   included_files = ["assets/shindan-core.mjs"]
 
+# 旧アドレス（netlify.app）へのアクセスは独自ドメインへ転送し、検索結果の評価を1つにまとめる
+[[redirects]]
+  from = "https://akari-holdings.netlify.app/*"
+  to = "https://akari-hd.co.jp/:splat"
+  status = 301
+  force = true
+
 # 運用用ファイルや開発用ファイルは公開しない
 [[redirects]]
   from = "/ops/*"
