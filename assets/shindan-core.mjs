@@ -124,7 +124,7 @@ export function scoreAnswers(a) {
 export const SERVICES = {
   second: { name: 'M&Aセカンドオピニオン', url: 'business-05.html',
     why: '提示された条件や進め方を、利害関係のない第三者の立場で検証することで、譲渡対価と納得感の両方を高められます。' },
-  mbo: { name: 'MBO支援', url: 'business-04.html',
+  mbo: { name: 'MBO・LBO支援', url: 'business-04.html',
     why: '社内の役員・社員への承継は、資金調達と既存株主との調整が鍵です。早い段階から設計することで選択肢が広がります。' },
   sell: { name: '事業承継・M&A（譲受）', url: 'business-02.html',
     why: '当社グループ自らが受け皿となり、雇用と技術を守りながら事業を次代へつなぐ選択肢があります。' },
