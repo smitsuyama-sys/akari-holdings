@@ -22,7 +22,7 @@ if (site !== DEFAULT_ORIGIN) {
 }
 
 const pages = readdirSync('.')
-  .filter(f => f.endsWith('.html') && f !== '404.html' && !/^google[0-9a-f]+\.html$/.test(f))
+  .filter(f => f.endsWith('.html') && f !== '404.html' && f !== 'report.html' && !/^google[0-9a-f]+\.html$/.test(f))
   .sort()
   .map(f => {
     const html = readFileSync(f, 'utf8');
@@ -36,6 +36,6 @@ writeFileSync('sitemap.xml',
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.join('\n')}\n</urlset>\n`);
 
 writeFileSync('robots.txt',
-  `User-agent: *\nAllow: /\nDisallow: /ops/\nDisallow: /netlify/\nDisallow: /scripts/\nDisallow: /wallpaper/\n\nSitemap: ${site}/sitemap.xml\n`);
+  `User-agent: *\nAllow: /\nDisallow: /ops/\nDisallow: /netlify/\nDisallow: /scripts/\nDisallow: /wallpaper/\nDisallow: /report.html\nDisallow: /api/\n\nSitemap: ${site}/sitemap.xml\n`);
 
 console.log(`sitemap.xml: ${pages.length} pages for ${site}`);

@@ -31,3 +31,10 @@
   to = "/404.html"
   status = 404
   force = true
+
+# 個別の診断レポートは検索エンジンに載せない
+[[headers]]
+  for = "/report.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Referrer-Policy = "no-referrer"
