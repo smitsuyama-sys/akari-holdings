@@ -104,7 +104,7 @@ function init() {
         <h3 class="sd-h3">詳細診断レポートを作成する</h3>
         <p class="sd-hint">あと少しの質問にお答えいただくと、A4で5〜8ページ相当の詳しいレポートを作成します。<br>
           ①現状診断 ②承継の選択肢の比較 ③リスクと論点 ④企業価値を高めるために ⑤90日の行動計画<br>
-          作成したレポートは画面で見られるほか、PDFで保存・印刷でき、ご登録のメールアドレスにもURLをお送りします。営業目的の電話はいたしません。</p>
+          作成したレポートは画面で見られるほか、PDFで保存・印刷できます。営業目的の電話はいたしません。</p>
         <form class="sd-form" id="sdForm" novalidate>
           <input type="hidden" name="form-name" value="shindan">
           <p hidden><label>bot <input name="bot-field"></label></p>
