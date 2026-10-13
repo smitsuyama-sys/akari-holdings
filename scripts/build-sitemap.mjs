@@ -38,7 +38,7 @@ const ORG = {
     addressRegion: '福岡県', addressLocality: '福岡市中央区', streetAddress: '薬院4丁目13-62'
   },
   areaServed: '日本',
-  knowsAbout: ['事業承継', 'M&A', 'MBO', 'M&Aセカンドオピニオン', 'グループ経営']
+  knowsAbout: ['事業承継', 'M&A', 'MBO', 'LBO', 'M&Aセカンドオピニオン', 'グループ経営']
 };
 const SECTION = [
   [/^business-/, '事業内容', 'business.html'],
