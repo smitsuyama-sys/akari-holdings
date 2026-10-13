@@ -25,7 +25,7 @@ Site configuration → Environment variables に次を登録してください�
 | `AI_TIMEOUT_MS` | AI の待ち時間（ミリ秒、既定 25000） | 任意 |
 
 - 未設定でも診断ツールは動き、定型レポートが画面に表示されます（メールは送られません）。
-- 自動メールを有効にしたら、`assets/shindan.js` の案内文（「この画面に表示します」「レポートを見る」）を「メールでもお送りします」に戻してください。
+- 自動メールは 2026年10月13日に有効化済み（Resend、送信元 info@akari-hd.co.jp、ドメイン akari-hd.co.jp を DKIM/SPF/DMARC で認証）。
 - Netlify の Forms → Form notifications で、フォーム `shindan` の通知先メールを設定すると、Resend なしでも担当者に回答が届きます。
 - Netlify の関数は既定で10秒で打ち切られます。AI レポートが間に合わない場合は定型レポートが表示されます（リードは保存済み）。必要に応じて Netlify サポートに関数のタイムアウト延長（最大26秒）を依頼してください。
 
