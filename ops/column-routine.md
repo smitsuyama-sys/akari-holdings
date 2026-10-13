@@ -35,7 +35,7 @@
 7. `column.html` の `<!-- COLUMN-LIST:START ... -->` の直下に、新しい記事の `<li class="news-item">` を追加する（新しい順）。
 8. SNS 投稿文を `ops/sns/YYYY-MM-DD.md` に書く：
    - X 用（140字以内）×2案、LinkedIn / Facebook 用（300字程度）×1案
-   - 記事URL は `https://<サイトのドメイン>/column-NN.html` とし、ドメインが不明なら `{SITE}/column-NN.html` と書く
+   - 記事URL は `https://akari-hd.co.jp/column-NN.html` と書く
    - ハッシュタグは2個まで
 9. 公開前の自己チェック（すべて満たすまで直す）：
    - 出典で確認できない数値・統計・事例を書いていない
