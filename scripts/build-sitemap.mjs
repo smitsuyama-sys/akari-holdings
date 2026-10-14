@@ -30,7 +30,7 @@ const ORG = {
   name: '光（あかり）ホールディングス株式会社',
   alternateName: ['光ホールディングス株式会社', '光ホールディングス', 'あかりホールディングス', 'AKARI HOLDINGS'],
   url: `${site}/`,
-  logo: `${site}/assets/og-image.png`,
+  logo: `${site}/assets/logo-512.png`,
   foundingDate: '2023-10-23',
   founder: { '@type': 'Person', name: '光山 聡', jobTitle: '代表取締役社長' },
   address: {

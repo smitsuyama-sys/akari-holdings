@@ -15,7 +15,7 @@
 - **自己紹介**（160字以内）
   > 事業承継・M&A・MBOを支援する光（あかり）ホールディングス公式。経営者のための承継コラムを週2回お届けします。3分でわかる無料の「準備度診断」はこちら👇
 - **リンク**：https://akari-hd.co.jp/shindan.html
-- **アイコン**：`assets/logo-mark.svg`（PNGが必要なら作ります）
+- **アイコン**：`ops/logo/akari-logo-mark-1024.png`（ロゴの意味は about.html の「Symbol」を参照）
 - **ヘッダー画像**：`assets/og-image.png`
 
 ## 2. 最初の投稿（そのまま使えます）

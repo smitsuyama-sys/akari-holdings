@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="15 11 70 79" role="img" aria-label="光ホールディングス シンボル">
+  <defs>
+    <linearGradient id="akariGold2" gradientUnits="userSpaceOnUse" x1="20" y1="10" x2="80" y2="90">
+      <stop offset="0" stop-color="#f0d690"/><stop offset=".55" stop-color="#d3ac5a"/><stop offset="1" stop-color="#a97f30"/>
+    </linearGradient>
+  </defs>
+  <g fill="url(#akariGold2)">
+    <path d="M47 88 C28 87 17 73 17 57 C17 40 30 28 43 13 C39 30 33 43 33 57 C33 70 38 80 47 88 Z"/>
+    <path d="M53 88 C72 87 83 73 83 57 C83 40 70 28 57 13 C61 30 67 43 67 57 C67 70 62 80 53 88 Z"/>
+    <path d="M50 36 C55 47 61 53 61 63 A11 11 0 0 1 39 63 C39 53 45 47 50 36 Z"/>
+  </g>
+</svg>
