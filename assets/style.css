@@ -765,3 +765,4 @@ a.news-text:hover{color:var(--blue-mid);}
 .symbol-story h3{font-size:1.25rem;color:var(--ink);margin:8px 0 12px;line-height:1.6;}
 .symbol-story p{color:var(--dark);line-height:1.9;}
 @media (max-width:700px){.symbol-story{flex-direction:column;text-align:left;align-items:flex-start;padding:28px 22px;gap:20px;}.symbol-story img{width:88px;}}
+.symbol-story p + p{margin-top:12px;}
