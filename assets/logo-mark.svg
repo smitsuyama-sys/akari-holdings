@@ -1,23 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="光ホールディングス ロゴ">
+  <!-- 左：会社のビジョン／右：働く人のビジョン。2つが寄り添い、真ん中に1つの灯（未来）をともす -->
   <defs>
     <linearGradient id="akariNavy" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#26396b"/><stop offset="1" stop-color="#01091e"/>
     </linearGradient>
-    <linearGradient id="akariGold" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#e6c878"/><stop offset="1" stop-color="#b8923f"/>
+    <linearGradient id="akariGold" gradientUnits="userSpaceOnUse" x1="20" y1="10" x2="80" y2="90">
+      <stop offset="0" stop-color="#f0d690"/><stop offset=".55" stop-color="#d3ac5a"/><stop offset="1" stop-color="#a97f30"/>
     </linearGradient>
   </defs>
-  <rect x="2" y="2" width="96" height="96" rx="16" fill="url(#akariNavy)"/>
-  <g fill="none" stroke="url(#akariGold)" stroke-width="4" stroke-linecap="round">
-    <!-- rays -->
-    <path d="M50 16 V25"/>
-    <path d="M30 24 L35 31"/>
-    <path d="M70 24 L65 31"/>
+  <rect x="2" y="2" width="96" height="96" rx="18" fill="url(#akariNavy)"/>
+  <g fill="url(#akariGold)" transform="translate(50 51) scale(.76) translate(-50 -50.5)">
+    <path d="M47 88 C28 87 17 73 17 57 C17 40 30 28 43 13 C39 30 33 43 33 57 C33 70 38 80 47 88 Z"/>
+    <path d="M53 88 C72 87 83 73 83 57 C83 40 70 28 57 13 C61 30 67 43 67 57 C67 70 62 80 53 88 Z"/>
+    <path d="M50 36 C55 47 61 53 61 63 A11 11 0 0 1 39 63 C39 53 45 47 50 36 Z"/>
   </g>
-  <!-- rising sun -->
-  <path d="M31 60 A19 19 0 0 1 69 60 Z" fill="url(#akariGold)"/>
-  <!-- horizon -->
-  <rect x="22" y="63.5" width="56" height="4" rx="2" fill="url(#akariGold)"/>
-  <!-- reflection -->
-  <rect x="33" y="73" width="34" height="3.4" rx="1.7" fill="#b8923f" opacity=".5"/>
 </svg>
