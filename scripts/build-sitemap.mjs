@@ -21,6 +21,19 @@ if (site !== DEFAULT_ORIGIN) {
   }
 }
 
+// トップページの「新着コラム」を、column.html の一覧の新しい3件で自動更新する。
+// 毎日のコラム自動公開は column.html に1件追加するだけなので、トップにもデプロイ時に反映される。
+{
+  const list = readFileSync('column.html', 'utf8');
+  const from = list.indexOf('COLUMN-LIST:START');
+  const items = from < 0 ? [] : (list.slice(from).match(/<li class="news-item">[\s\S]*?<\/li>/g) || []).slice(0, 3);
+  const index = readFileSync('index.html', 'utf8');
+  const re = /(<!-- LATEST-COLUMNS:START[^>]*-->\n)[\s\S]*?(<!-- LATEST-COLUMNS:END -->)/;
+  if (items.length && re.test(index)) {
+    writeFileSync('index.html', index.replace(re, (_, a, b) => a + items.map(i => '      ' + i).join('\n') + '\n' + b));
+  }
+}
+
 // 検索エンジン向けの構造化データ（JSON-LD）を各ページに差し込む。
 // 会社情報・パンくず・記事情報を Google に正しく伝え、社名検索や記事の表示を助ける。
 // 毎日追加されるコラムにも、デプロイのたびに自動で付く。
