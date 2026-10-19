@@ -766,3 +766,4 @@ a.news-text:hover{color:var(--blue-mid);}
 .symbol-story p{color:var(--dark);line-height:1.9;}
 @media (max-width:700px){.symbol-story{flex-direction:column;text-align:left;align-items:flex-start;padding:28px 22px;gap:20px;}.symbol-story img{width:88px;}}
 .symbol-story p + p{margin-top:12px;}
+@media(max-width:560px){.news-item .news-text{flex:1 1 100%;}}
