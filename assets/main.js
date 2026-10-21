@@ -173,19 +173,32 @@
     });
   }
 
-  // --- Contact form (demo: validation + feedback) ---
+  // --- Contact form: 種類の選択・ヒント表示・送信（Netlify Forms に記録し、受付メールを自動送信） ---
   var form = document.getElementById('contactForm');
   var note = document.getElementById('formNote');
   if (form && note) {
+    var typeSel = form.elements['type'];
+    var hint = document.getElementById('cf-type-hint');
+    var HINTS = {
+      succession: '後継者の状況や、大切にしたいこと（社員の雇用、社名など）をお聞かせください。',
+      mbo: '後継者候補（役員・社員）の状況や、株主の構成について分かる範囲でお書きください。',
+      second: 'すでに提示されている条件や、相談中の仲介会社・FAの有無をお書きください。資料は面談時に拝見します。',
+      shindan: '診断結果やレポートについてのご質問は、レポートのURLを添えていただくとスムーズです。',
+      recruit: '採用に関するお問い合わせは、ご経歴や希望する職種をご記入ください。'
+    };
+    var showHint = function () { if (hint) hint.textContent = HINTS[typeSel.value] || ''; };
+    // 各ページのボタンから ?type=second のように来た場合は、種類を選んだ状態にする
+    var q = new URLSearchParams(location.search).get('type');
+    if (q && typeSel && typeSel.querySelector('option[value="' + q.replace(/[^a-z]/g, '') + '"]')) typeSel.value = q;
+    if (typeSel) { typeSel.addEventListener('change', showHint); showHint(); }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var val = function (n) { var el = form.elements[n]; return el ? el.value.trim() : ''; };
-      var name = val('name');
       var email = val('email');
-      var msg = val('message');
       var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      if (!name || !emailOk || !msg) {
-        note.textContent = '必須項目をご確認ください（メールアドレスの形式もご確認ください）。';
+      if (!val('type') || !val('name') || !emailOk || !val('message') || !form.elements['consent'].checked) {
+        note.textContent = 'お問い合わせの種類・必須項目・プライバシーポリシーへの同意をご確認ください。';
         note.className = 'form-note err';
         return;
       }
@@ -193,16 +206,22 @@
       if (btn) btn.disabled = true;
       note.textContent = '送信しています…';
       note.className = 'form-note';
-      var body = new URLSearchParams(new FormData(form)).toString();
+      var fd = new FormData(form);
+      fd.set('type', typeSel.options[typeSel.selectedIndex].text);
+      var data = {};
+      fd.forEach(function (v, k) { data[k] = v; });
       fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: body
+        body: new URLSearchParams(fd).toString()
       }).then(function (r) {
         if (!r.ok) throw new Error('status ' + r.status);
-        note.textContent = 'お問い合わせを送信しました。担当者より折り返しご連絡いたします。';
+        // 受付確認メール・担当者への通知（失敗しても送信自体は完了している）
+        fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }).catch(function () {});
+        note.textContent = 'お問い合わせを送信しました。受付確認のメールをお送りしています。担当者より折り返しご連絡いたします。';
         note.className = 'form-note ok';
         form.reset();
+        showHint();
       }).catch(function () {
         note.textContent = '送信に失敗しました。お手数ですが時間をおいて再度お試しください。';
         note.className = 'form-note err';
