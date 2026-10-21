@@ -803,3 +803,8 @@ a.news-text:hover{color:var(--blue-mid);}
 .policy ul{margin:0 0 16px 1.4em;}
 .footer-sub{margin-top:6px;}
 .footer-sub a{font-size:.78rem;color:var(--grey);}
+/* ---- Service policy list (second opinion) ---- */
+.svc-policy{list-style:none;display:flex;flex-direction:column;gap:14px;}
+.svc-policy li{background:#fff;border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px;padding:18px 22px;line-height:1.9;color:var(--dark);}
+.svc-policy b{color:var(--ink);margin-right:6px;}
+.svc-note{margin-top:16px;font-size:.88rem;line-height:1.8;color:var(--grey);}
