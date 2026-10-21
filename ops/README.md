@@ -46,3 +46,10 @@ Site configuration → Environment variables に次を登録してください�
 
 ## SNS
 - プロフィール文と最初の投稿は `ops/sns/start-kit.md` にあります。
+
+## お問い合わせフォーム（contact.html）
+- 種類（事業承継・MBO/LBO・セカンドオピニオン・診断・グループ/その他事業・協業・採用・取材・その他）を必須で選択。各事業ページのボタンから `contact.html?type=second` のように来ると、種類が選ばれた状態になる
+- 送信内容は Netlify Forms（フォーム名 `contact`）に記録され、あわせて `/api/contact`（netlify/functions/contact.mjs）が Resend で次の2通を送る
+  - 担当者（`STAFF_EMAIL`）宛て：件名【お問い合わせ：種類】会社名 お名前様。返信するとお客様に届く
+  - お客様宛て：受付確認メール（同じメールアドレスへは5分に1回まで。入力された本文は載せない）
+- プライバシーポリシーは privacy.html（全ページのフッターにリンク）

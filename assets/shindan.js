@@ -119,7 +119,7 @@ function init() {
             <div class="field"><label>メールアドレス<span class="req">必須</span></label><input name="email" type="email" autocomplete="email" required></div>
             <div class="field"><label>電話番号（任意）</label><input name="phone" type="tel" autocomplete="tel"></div>
           </fieldset>
-          <label class="sd-consent"><input type="checkbox" name="consent" value="yes" required> 回答内容を、レポートの作成と当社からのご連絡に利用することに同意します</label>
+          <label class="sd-consent"><input type="checkbox" name="consent" value="yes" required> 回答内容を、レポートの作成と当社からのご連絡に利用することに同意します（<a href="privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a>）</label>
           <button type="submit" class="btn btn-primary btn-full">詳細レポートを作成する</button>
           <p class="form-note" id="sdNote" role="status"></p>
         </form>

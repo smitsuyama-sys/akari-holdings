@@ -779,3 +779,27 @@ a.news-text:hover{color:var(--blue-mid);}
   .gnav ul a .nav-jp{display:none;}
   .gnav ul a{padding:8px 7px;}
 }
+/* ---- Contact form (types, rows, consent, FAQ) ---- */
+.field select{width:100%;border:1px solid var(--border);border-radius:3px;padding:12px 14px;font:inherit;font-size:.95rem;color:var(--dark);background:#fcfcfc;}
+.field select:focus{outline:none;border-color:var(--blue-mid);background:#fff;box-shadow:0 0 0 3px rgba(54,112,172,.14);}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:0 18px;}
+.field-hint{margin-top:8px;font-size:.84rem;line-height:1.7;color:var(--blue-mid);min-height:0;}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;line-height:1.7;margin:4px 0 22px;cursor:pointer;}
+.consent input{margin-top:6px;width:18px;height:18px;flex-shrink:0;}
+.consent a{color:var(--blue-mid);text-decoration:underline;}
+.form-sub{margin-top:10px;font-size:.8rem;line-height:1.7;color:var(--grey);text-align:center;}
+.contact-faq{margin-top:64px;max-width:860px;margin-left:auto;margin-right:auto;}
+.faq-title{font-size:1.25rem;font-weight:700;color:var(--ink);margin-bottom:18px;padding-left:14px;border-left:3px solid var(--gold);}
+.contact-faq details{background:#fff;border:1px solid var(--border);border-radius:6px;margin-bottom:12px;}
+.contact-faq summary{cursor:pointer;padding:18px 22px;font-weight:700;color:var(--ink);line-height:1.6;}
+.contact-faq details[open] summary{border-bottom:1px solid var(--border);}
+.contact-faq details p{padding:16px 22px 20px;color:var(--dark);line-height:1.9;}
+.contact-faq details a{color:var(--blue-mid);text-decoration:underline;}
+@media(max-width:560px){.field-row{grid-template-columns:1fr;}}
+/* ---- Privacy policy ---- */
+.policy{max-width:860px;margin:0 auto;}
+.policy h2{font-size:1.15rem;font-weight:700;color:var(--ink);margin:36px 0 12px;padding-left:12px;border-left:3px solid var(--gold);}
+.policy p,.policy li{color:var(--dark);line-height:1.95;}
+.policy ul{margin:0 0 16px 1.4em;}
+.footer-sub{margin-top:6px;}
+.footer-sub a{font-size:.78rem;color:var(--grey);}
