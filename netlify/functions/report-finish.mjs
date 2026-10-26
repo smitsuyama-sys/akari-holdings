@@ -41,6 +41,11 @@ export default async (req) => {
         (booking ? `\n30分の無料面談はこちらからご予約いただけます。\n${booking}\n` : '') +
         `\n※本レポートは一般的な情報提供を目的としたもので、個別の法務・税務・投資判断に関する助言ではありません。\n\n光（あかり）ホールディングス株式会社`
     });
+  } catch (err) {
+    console.error('report-finish: customer mail failed:', err?.message ?? err);
+  }
+  // 担当者への通知は、利用者宛てが失敗しても送る
+  try {
     if (process.env.STAFF_EMAIL) {
       const detail = [...QUESTIONS.map(q => `${q.title} → ${labelOf(q.id, meta.answers[q.id]) || '未回答'}`),
         ...EXTRA_QUESTIONS.map(q => `${q.title} → ${labelOfExtra(q.id, meta.extra[q.id]) || '未回答'}`)].join('\n');
@@ -53,7 +58,7 @@ export default async (req) => {
       });
     }
   } catch (err) {
-    console.error('mail failed:', err?.message ?? err);
+    console.error('report-finish: staff mail failed:', err?.message ?? err);
   }
   await blobs.setJSON(metaKey, { ...meta, finishedAt: new Date().toISOString(), emailed });
   return json({ emailed, tier: s.tier });

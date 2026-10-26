@@ -210,20 +210,36 @@
       fd.set('type', typeSel.options[typeSel.selectedIndex].text);
       var data = {};
       fd.forEach(function (v, k) { data[k] = v; });
-      fetch('/', {
+      // Netlify Forms への記録と、メール送信（/api/contact）を同時に行う。
+      // どちらか一方が失敗しても、もう一方が成功していればお問い合わせは届いている。
+      var record = fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams(fd).toString()
-      }).then(function (r) {
-        if (!r.ok) throw new Error('status ' + r.status);
-        // 受付確認メール・担当者への通知（失敗しても送信自体は完了している）
-        fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }).catch(function () {});
-        note.textContent = 'お問い合わせを送信しました。受付確認のメールをお送りしています。担当者より折り返しご連絡いたします。';
+      }).then(function (r) { return r.ok; }).catch(function () { return false; });
+      var mail = fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+      Promise.all([record, mail]).then(function (res) {
+        var recorded = res[0];
+        var m = res[1] || {};
+        var staffSent = !!m.staffSent;
+        var customerSent = !!m.customerSent;
+        if (!recorded && !staffSent) throw new Error('both failed');
+        if (customerSent) {
+          note.textContent = 'お問い合わせを送信しました。受付確認のメールをお送りしましたので、ご確認ください（届かない場合は迷惑メールフォルダもご確認ください）。担当者より折り返しご連絡いたします。';
+        } else if (m.reason === 'throttled') {
+          note.textContent = 'お問い合わせを送信しました。担当者より折り返しご連絡いたします。';
+        } else {
+          note.textContent = 'お問い合わせを受け付けました。受付確認メールはお送りできませんでしたが、内容は担当者に届いています。折り返しご連絡いたします。';
+        }
         note.className = 'form-note ok';
         form.reset();
         showHint();
       }).catch(function () {
-        note.textContent = '送信に失敗しました。お手数ですが時間をおいて再度お試しください。';
+        note.textContent = '送信に失敗しました。お手数ですが、時間をおいて再度お試しください。';
         note.className = 'form-note err';
       }).then(function () {
         if (btn) btn.disabled = false;

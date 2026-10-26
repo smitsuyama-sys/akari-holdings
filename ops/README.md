@@ -23,6 +23,7 @@ Site configuration → Environment variables に次を登録してください�
 | `BOOKING_URL` | 面談予約ページ（Googleカレンダーの予約スケジュール等）のURL | 任意 |
 | `REPLY_TO` | 利用者がメールに返信したときの宛先（未設定なら `STAFF_EMAIL`） | 任意 |
 | `AI_TIMEOUT_MS` | AI の待ち時間（ミリ秒、既定 25000） | 任意 |
+| `MAIL_TIMEOUT_MS` | Resend の応答待ち時間（ミリ秒、既定 8000） | 任意 |
 
 - 未設定でも診断ツールは動き、定型レポートが画面に表示されます（メールは送られません）。
 - 自動メールは稼働中（2026年10月13日に Resend で akari-hd.co.jp のドメイン確認が「Verified」になり、診断ページの案内文にも「メールでもお送りします」を戻した）。送信に失敗する場合は Resend の Domains で状態を確認する。
@@ -53,3 +54,15 @@ Site configuration → Environment variables に次を登録してください�
   - 担当者（`STAFF_EMAIL`）宛て：件名【お問い合わせ：種類】会社名 お名前様。返信するとお客様に届く
   - お客様宛て：受付確認メール（同じメールアドレスへは5分に1回まで。入力された本文は載せない）
 - プライバシーポリシーは privacy.html（全ページのフッターにリンク）
+- 送信ボタンを押すと、Netlify Forms への記録と `/api/contact` のメール送信を同時に行う。片方が失敗してももう片方が成功していれば「受け付けました」と表示し、メールが送れなかったときはその旨を画面に出す（両方失敗したときだけ「送信に失敗しました」）
+
+## メールが Gmail などに届かないときの確認手順
+上から順に見ると、どこで止まっているかが分かります。
+1. **設定が揃っているか** … ブラウザで `https://akari-hd.co.jp/api/contact` を開く。`"configured": true` でなければ Netlify の Environment variables（`RESEND_API_KEY`・`MAIL_FROM`・`STAFF_EMAIL`）を確認する。変数を変えたら **再デプロイ**（Deploys → Trigger deploy）しないと関数に反映されない
+2. **フォームの記録が残っているか** … Netlify → Forms → `contact`。届いていれば「Verified submissions」に、迷惑判定されると「Spam submissions」に入る（迷惑判定されると Netlify からの通知メールも来ない）。フォーム `contact` の Form notifications（通知先メール）が設定されているかもここで確認する
+3. **関数のログ** … Netlify → Logs → Functions → `contact`。`sendMail: sent { id: ... }` が出ていれば Resend は受け付けている。`resend 4xx: ...` が出ていればその内容が原因（例：401 はキーが無効、403 はドメイン未認証や送信元アドレス不一致、422 は宛先や送信元の形式、429 は送りすぎ）
+4. **Resend 側** … Resend → Emails で送信ログ（Delivered / Bounced / Complained）を見る。Resend → Domains で `akari-hd.co.jp` が Verified のままか確認する。`MAIL_FROM` のアドレスのドメインは、Resend で認証したドメインと一致している必要がある
+5. **受信側（Gmail）** … 「迷惑メール」「プロモーション」「すべてのメール」を検索する（`from:info@akari-hd.co.jp`）。Gmail のフィルタで振り分けられていないかも確認する。Google Workspace のアドレスの場合は、管理コンソールの「メールログ検索」で受信の有無が分かる
+6. **ドメインの DNS** … Gmail は SPF・DKIM に加えて DMARC（`_dmarc.akari-hd.co.jp` の TXT に `v=DMARC1; p=none;`）があると受信トレイに入りやすい。Resend → Domains の DNS レコードがすべて Verified かを確認する
+
+※ Resend の無料プランは 1日100通・月3,000通まで。超えると 429 で止まる

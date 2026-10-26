@@ -174,16 +174,27 @@ export function fallbackSection(id, meta) {
 }
 
 // ---------- メール ----------
+// メール送信の設定が揃っているか（値そのものは返さない。/api/contact の GET で確認できる）
+export function mailConfigStatus() {
+  const resendKey = !!process.env.RESEND_API_KEY, from = !!process.env.MAIL_FROM, staff = !!process.env.STAFF_EMAIL;
+  return { configured: resendKey && from, resendKey, from, staff, replyTo: !!(process.env.REPLY_TO || process.env.STAFF_EMAIL) };
+}
+
+// Resend でメールを1通送る。送れたら true、設定がなければ false、Resend がエラーを返したら例外
 export async function sendMail(payload) {
   const key = process.env.RESEND_API_KEY, from = process.env.MAIL_FROM;
-  if (!key || !from) return false;
+  if (!key || !from) { console.error('sendMail: RESEND_API_KEY / MAIL_FROM が未設定のためメールを送りません'); return false; }
   const replyTo = process.env.REPLY_TO || process.env.STAFF_EMAIL;
   const r = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from, ...(replyTo ? { reply_to: replyTo } : {}), ...payload })
+    body: JSON.stringify({ from, ...(replyTo ? { reply_to: replyTo } : {}), ...payload }),
+    signal: AbortSignal.timeout(Number(process.env.MAIL_TIMEOUT_MS) || 8000)
   });
-  if (!r.ok) throw new Error(`resend ${r.status}: ${await r.text()}`);
+  const text = await r.text();
+  if (!r.ok) throw new Error(`resend ${r.status}: ${text}`);
+  let id; try { id = JSON.parse(text)?.id; } catch {}
+  console.log('sendMail: sent', { id, to: payload.to, subject: payload.subject });
   return true;
 }
 
