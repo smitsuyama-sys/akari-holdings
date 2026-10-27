@@ -23,5 +23,9 @@
 - ニューヨーコ: 営業時間（12:00–24:00 L.O.22:30 を採用。17:00 開店とする掲載あり）、昼焼肉の価格は目安
 - Web予約リンク（TableCheck）は熊本本店以外は推定URLのため、各店の実際の予約ページに差し替えてください
 
+## ロゴ・写真
+- `assets/logo-ivory.png` / `assets/logo-gold.png`: 店舗ロゴ（提供画像から背景を透過処理）
+- `assets/grill-master.jpg`: 焼師の写真。トップ・熊本本店・春吉のヒーロー背景と「焼師」セクションに使用
+
 ## 写真の入れ方
 各ページの `<figure class="visual">` と `<figure class="space-visual">` の中に `<img src="..." alt="...">` を追加すると、既存の演出の上に写真が全面表示されます。

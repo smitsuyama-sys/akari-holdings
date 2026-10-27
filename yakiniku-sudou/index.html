@@ -15,23 +15,26 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%230b0a09' stroke='%23c6a66a' stroke-width='2'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='serif' font-size='32' fill='%23efe8dc'%3E須%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/site.css?v=2">
+<link rel="icon" type="image/png" href="assets/logo-ivory.png">
+<link rel="apple-touch-icon" href="assets/logo-ivory.png">
+<meta property="og:image" content="assets/grill-master.jpg">
+<link rel="stylesheet" href="assets/site.css?v=3">
 </head>
 <body data-page="index">
-<div class="loader" id="loader" aria-hidden="true"><div class="loader-mark"><span>須</span></div><div class="loader-en">YAKINIKU SUDOU</div></div>
+<div class="loader" id="loader" aria-hidden="true"><div class="loader-mark"><img src="assets/logo-gold.png" alt=""></div><div class="loader-en">YAKINIKU SUDOU</div></div>
 <div class="cursor" id="cursor"><div class="cursor-dot"></div></div>
 <div class="cursor-ring" id="cursorRing"></div>
 <header class="header" id="header">
   <a href="index.html" class="brand" aria-label="焼肉すどう">
-    <span class="brand-mark">須</span>
+    <span class="brand-mark"><img src="assets/logo-ivory.png" alt=""></span>
     <span class="brand-text"><span class="brand-jp">焼肉すどう</span><span class="brand-en">Yakiniku Sudou · Kumamoto / Fukuoka</span></span>
   </a>
   <nav class="nav" id="nav"><a href="#stores" class="jp">系列店</a><a href="#philosophy">Philosophy</a><a href="#history">History</a><a href="kumamoto.html#reserve" class="nav-reserve">ご予約</a></nav>
   <button class="burger" id="burger" aria-label="メニュー" aria-expanded="false"><span></span><span></span><span></span></button>
 </header>
 <main id="top">
-<section class="hero">
+<section class="hero has-photo">
+  <div class="hero-photo" style="background-image:url(assets/grill-master.jpg)"></div>
   <div class="hero-bg"></div>
   <canvas id="embers" aria-hidden="true"></canvas>
   <p class="hero-vert">熊本に生まれ、福岡へ。四つの焼肉。</p>
@@ -113,7 +116,7 @@
   <div class="wrap">
     <div class="sec-head rv"><span class="sec-num">03</span><h2 class="sec-en">History</h2><span class="sec-jp">あゆみ</span></div>
     <div class="master-grid">
-      <figure class="visual rv"><span class="heat"></span><span class="vtext">熊本から、福岡へ。</span><span class="corner">Since 2013</span></figure>
+      <figure class="visual photo rv"><img src="assets/grill-master.jpg" alt="焼師が肉を焼き上げる様子"><span class="heat"></span><span class="vtext">熊本から、福岡へ。</span><span class="corner">Since 2013</span></figure>
       <div class="master-copy">
         <p class="lead rv">ひとつの目利き、<br>四つのかたち。</p>
         <p class="copy rv">フルアテンドの「すどう」、炭火の「ヨーコ」、大衆焼肉の「ニューヨーコ」。価格も、焼き方も違います。けれど、肉を選ぶ目と、一枚を大切にする姿勢は同じです。</p>
@@ -156,7 +159,7 @@
   <div class="wrap">
     <div class="footer-top">
       <a href="index.html" class="brand" aria-label="焼肉すどう">
-        <span class="brand-mark">須</span>
+        <span class="brand-mark"><img src="assets/logo-ivory.png" alt=""></span>
         <span class="brand-text"><span class="brand-jp">焼肉すどう</span><span class="brand-en">Yakiniku Sudou · Kumamoto / Fukuoka</span></span>
       </a>
       <div class="footer-stores">
@@ -170,6 +173,6 @@
   </div>
 </footer>
 <a href="#top" class="totop" id="totop" aria-label="ページ上部へ"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a>
-<script src="assets/site.js?v=2"></script>
+<script src="assets/site.js?v=3"></script>
 </body>
 </html>

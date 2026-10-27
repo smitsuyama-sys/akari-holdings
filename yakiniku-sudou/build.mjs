@@ -12,7 +12,7 @@ const CITY = `<svg viewBox="0 0 800 300" preserveAspectRatio="xMidYMax slice" ar
 
 const stores = [
 {
-  slug:'kumamoto', name:'焼肉すどう 熊本本店', short:'熊本本店', en:'Yakiniku Sudou · Kumamoto Honten', area:'熊本・上通',
+  slug:'kumamoto', photo:true, name:'焼肉すどう 熊本本店', short:'熊本本店', en:'Yakiniku Sudou · Kumamoto Honten', area:'熊本・上通',
   role:'The Origin', tagline:'一頭ごとに肉質を見極め、焼師が一枚ずつ焼き上げる。熊本城を望む小国杉の三階で、焼肉すどうの原点を。',
   metaBand:'おまかせ ¥16,500 / 選べる ¥11,000', postal:'860-0845', address:'熊本県熊本市中央区上通町4-10 トラヤビル 3F',
   description:'焼肉すどう 熊本本店（熊本市中央区上通町・トラヤビル3F）。一頭ごとに肉質を見極め、焼師が一枚ずつ最高の焼き加減で仕上げるフルアテンド型の焼肉。食べログ 焼肉 WEST 百名店 2024・2025 選出。',
@@ -50,7 +50,7 @@ const stores = [
   reserve:{title:'今夜の一枚を、<br>ご予約ください。',text:'おまかせコースはご予約制です。17名様以上の団体やご希望日時のご相談は、お電話にて承ります。',tel:'050-5448-3772',sub:'Reservation · 17:00 – 23:00（最終入店 21:30）',web:'https://www.tablecheck.com/shops/yakinikusudo-kumamoto/reserve'}
 },
 {
-  slug:'haruyoshi', name:'焼肉すどう 春吉', short:'春吉', en:'Yakiniku Sudou · Haruyoshi', area:'福岡・春吉',
+  slug:'haruyoshi', photo:true, name:'焼肉すどう 春吉', short:'春吉', en:'Yakiniku Sudou · Haruyoshi', area:'福岡・春吉',
   role:'Fukuoka Flagship', tagline:'暖簾で仕切られた半個室、ソムリエの選ぶワイン、そして焼師。熊本の技を、福岡・春吉の静かな路地で。',
   metaBand:'上焼肉 ¥13,200 / 特上焼肉 ¥16,500', postal:'810-0003', address:'福岡県福岡市中央区春吉3-11-19 パノラマスクエア博多 1F',
   description:'焼肉すどう 春吉（福岡市中央区春吉・パノラマスクエア博多1F）。暖簾で仕切られた半個室で、焼師が一枚ずつ焼き上げるフルアテンド焼肉。完全予約制。上焼肉コース13,200円、特上焼肉コース16,500円。食べログアワード Bronze 受賞。',
@@ -182,18 +182,20 @@ const HEAD = (title, desc, slug) => `<!DOCTYPE html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%230b0a09' stroke='%23c6a66a' stroke-width='2'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='serif' font-size='32' fill='%23efe8dc'%3E須%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/site.css?v=2">
+<link rel="icon" type="image/png" href="assets/logo-ivory.png">
+<link rel="apple-touch-icon" href="assets/logo-ivory.png">
+<meta property="og:image" content="assets/grill-master.jpg">
+<link rel="stylesheet" href="assets/site.css?v=3">
 </head>
 <body data-page="${slug}">
-<div class="loader" id="loader" aria-hidden="true"><div class="loader-mark"><span>須</span></div><div class="loader-en">YAKINIKU SUDOU</div></div>
+<div class="loader" id="loader" aria-hidden="true"><div class="loader-mark"><img src="assets/logo-gold.png" alt=""></div><div class="loader-en">YAKINIKU SUDOU</div></div>
 <div class="cursor" id="cursor"><div class="cursor-dot"></div></div>
 <div class="cursor-ring" id="cursorRing"></div>
 `;
 
 const header = (nav, brandJp, brandEn) => `<header class="header" id="header">
   <a href="index.html" class="brand" aria-label="焼肉すどう">
-    <span class="brand-mark">須</span>
+    <span class="brand-mark"><img src="assets/logo-ivory.png" alt=""></span>
     <span class="brand-text"><span class="brand-jp">${brandJp}</span><span class="brand-en">${brandEn}</span></span>
   </a>
   <nav class="nav" id="nav">${nav}</nav>
@@ -205,7 +207,7 @@ const footer = () => `<footer class="footer">
   <div class="wrap">
     <div class="footer-top">
       <a href="index.html" class="brand" aria-label="焼肉すどう">
-        <span class="brand-mark">須</span>
+        <span class="brand-mark"><img src="assets/logo-ivory.png" alt=""></span>
         <span class="brand-text"><span class="brand-jp">焼肉すどう</span><span class="brand-en">Yakiniku Sudou · Kumamoto / Fukuoka</span></span>
       </a>
       <div class="footer-stores">
@@ -216,7 +218,7 @@ const footer = () => `<footer class="footer">
   </div>
 </footer>
 <a href="#top" class="totop" id="totop" aria-label="ページ上部へ"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a>
-<script src="assets/site.js?v=2"></script>
+<script src="assets/site.js?v=3"></script>
 </body>
 </html>
 `;
@@ -231,7 +233,8 @@ function storePage(s){
   let h = HEAD(`${s.name}｜焼肉すどう`, s.description, s.slug);
   h += header(nav, s.name, s.en);
   h += `<main id="top">
-<section class="hero">
+<section class="hero${s.photo?' has-photo':''}">
+  ${s.photo?'<div class="hero-photo" style="background-image:url(assets/grill-master.jpg)"></div>':''}
   <div class="hero-bg"></div>
   <canvas id="embers" aria-hidden="true"></canvas>
   <p class="hero-vert">${s.vert}</p>
@@ -270,8 +273,8 @@ function storePage(s){
   <div class="wrap">
     <div class="sec-head rv"><span class="sec-num">02</span><h2 class="sec-en">${s.feature.en}</h2><span class="sec-jp">${s.feature.jp}</span></div>
     <div class="master-grid">
-      <figure class="visual ${s.feature.visual} rv">
-        <!-- 写真を入れる場合はここに <img src="..." alt=""> を追加 -->
+      <figure class="visual ${s.feature.visual}${s.photo?' photo':''} rv">
+        ${s.photo?'<img src="assets/grill-master.jpg" alt="焼師が肉を焼き上げる様子">':'<!-- 写真を入れる場合はここに <img src="..." alt=""> を追加 -->'}
         <span class="heat"></span><span class="vtext">${s.feature.vtext}</span><span class="corner">${s.feature.corner}</span>
       </figure>
       <div class="master-copy">
@@ -378,7 +381,8 @@ function indexPage(){
   let h = HEAD('焼肉すどう｜熊本本店・春吉・ヨーコ・ニューヨーコ', '熊本・上通で生まれたフルアテンド焼肉「焼肉すどう」。熊本本店、福岡・春吉店、姉妹店の焼肉ヨーコ（大濠）、焼肉ニューヨーコ（春吉）。一頭ごとに肉質を見極め、焼師が一枚ずつ焼き上げる。', 'index');
   h += header(nav, '焼肉すどう', 'Yakiniku Sudou · Kumamoto / Fukuoka');
   h += `<main id="top">
-<section class="hero">
+<section class="hero has-photo">
+  <div class="hero-photo" style="background-image:url(assets/grill-master.jpg)"></div>
   <div class="hero-bg"></div>
   <canvas id="embers" aria-hidden="true"></canvas>
   <p class="hero-vert">熊本に生まれ、福岡へ。四つの焼肉。</p>
@@ -436,7 +440,7 @@ function indexPage(){
   <div class="wrap">
     <div class="sec-head rv"><span class="sec-num">03</span><h2 class="sec-en">History</h2><span class="sec-jp">あゆみ</span></div>
     <div class="master-grid">
-      <figure class="visual rv"><span class="heat"></span><span class="vtext">熊本から、福岡へ。</span><span class="corner">Since 2013</span></figure>
+      <figure class="visual photo rv"><img src="assets/grill-master.jpg" alt="焼師が肉を焼き上げる様子"><span class="heat"></span><span class="vtext">熊本から、福岡へ。</span><span class="corner">Since 2013</span></figure>
       <div class="master-copy">
         <p class="lead rv">ひとつの目利き、<br>四つのかたち。</p>
         <p class="copy rv">フルアテンドの「すどう」、炭火の「ヨーコ」、大衆焼肉の「ニューヨーコ」。価格も、焼き方も違います。けれど、肉を選ぶ目と、一枚を大切にする姿勢は同じです。</p>
