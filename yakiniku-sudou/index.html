@@ -445,7 +445,12 @@ body.is-hover .cursor-ring{width:72px;height:72px;background:rgba(255,255,255,.1
 .info dd strong{font-weight:500;color:var(--ink)}
 .info dd a{border-bottom:1px solid var(--line-2);transition:border-color .3s,color .3s}
 .info dd a:hover{color:var(--gold-2);border-color:var(--gold-2)}
-.map{position:relative;aspect-ratio:1/1;border:1px solid var(--line);overflow:hidden;background:#111}
+.map{position:relative;aspect-ratio:1/1;border:1px solid var(--line);overflow:hidden;background:radial-gradient(ellipse 60% 50% at 50% 110%,rgba(255,90,31,.25),transparent 70%),#100d0b}
+.map-fallback{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px}
+.map-fallback small{display:block;font-family:var(--serif-en);font-size:11px;letter-spacing:.34em;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
+.map-fallback b{display:block;font-family:var(--serif-jp);font-weight:500;font-size:clamp(18px,1.8vw,24px);letter-spacing:.1em;line-height:1.6;margin-bottom:24px}
+.map-fallback .btn{font-size:13px;padding:14px 26px}
+.map iframe{position:relative;z-index:1}
 .map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(1) invert(.92) contrast(1.05) brightness(.9) sepia(.25)}
 .map::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 120px rgba(10,9,8,.9)}
 @media (max-width:900px){.access-grid{grid-template-columns:1fr}.info div{grid-template-columns:100px 1fr}}
@@ -769,6 +774,13 @@ body.is-hover .cursor-ring{width:72px;height:72px;background:rgba(255,255,255,.1
         <div><dt>Links</dt><dd><a href="https://tabelog.com/kumamoto/A4301/A430101/43008422/" target="_blank" rel="noopener" data-hover>食べログ</a>　<a href="https://fbf8500.gorp.jp/" target="_blank" rel="noopener" data-hover>焼肉すどう 春吉（福岡）</a></dd></div>
       </dl>
       <div class="map rv">
+        <div class="map-fallback">
+          <div>
+            <small>Map</small>
+            <b>熊本市中央区上通町4-10<br>トラヤビル 3F</b>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E7%84%BC%E8%82%89%E3%81%99%E3%81%A9%E3%81%86+%E7%86%8A%E6%9C%AC%E6%9C%AC%E5%BA%97" target="_blank" rel="noopener" class="btn" data-hover><i></i>Google マップで開く</a>
+          </div>
+        </div>
         <iframe title="焼肉すどう 熊本本店 地図" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=%E7%86%8A%E6%9C%AC%E7%9C%8C%E7%86%8A%E6%9C%AC%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E4%B8%8A%E9%80%9A%E7%94%BA4-10&z=17&output=embed"></iframe>
       </div>
     </div>
